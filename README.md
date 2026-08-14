@@ -1,4 +1,4 @@
-# NativeZipTools
+# 📦 NativeZipTools - Lightweight and High-Performance .NET Compression Tool
 
 ## 🌐 Project Overview / Visão Geral do Projeto
 
