@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>GlassHub.EventHorizon.GUI</RootNamespace>
+    <AssemblyName>GlassHub.EventHorizon.GUI</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GlassHub.EventHorizon.Core\GlassHub.EventHorizon.Core.csproj" />
+    <ProjectReference Include="..\GlassHub.EventHorizon.Engine.Native\GlassHub.EventHorizon.Engine.Native.csproj" />
+    <ProjectReference Include="..\GlassHub.EventHorizon.Engine.SevenZip\GlassHub.EventHorizon.Engine.SevenZip.csproj" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>GlassHub.EventHorizon.Engine.SevenZip</RootNamespace>
+    <AssemblyName>GlassHub.EventHorizon.Engine.SevenZip</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GlassHub.EventHorizon.Core\GlassHub.EventHorizon.Core.csproj" />
+  </ItemGroup>
+</Project>
