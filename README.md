@@ -29,7 +29,7 @@
 
 ## 🌐 Project Overview
 
-![Overview Card](https://glass-hub-engine.vercel.app/api/card?title=GlassHub+Event+Horizon&description=High-Performance+Stream-Based+Compression+%26+Telemetry+Engine+with+Clean+Architecture+and+Atomic+Design.&tag=Cosmic+Arch&icon=sparkles&theme=glass-dark)
+![Overview Card](https://glass-hub-engine.vercel.app/api/card?title=GlassHub+Event+Horizon&description=High-Performance+Stream-Based+Compression+%26+Telemetry+Engine+for+the+GlassHub+Ecosystem.&tag=Cosmic+Arch&icon=sparkles&width=650&theme=glass-dark)
 
 **GlassHubEventHorizon** is a high-performance stream-based desktop application and CLI tool for specialized file compression, extraction, and telemetry inspection. Architected with **Clean Architecture**, **Atomic Component Design** (Atoms, Molecules, Organisms, Templates), a smart dual-engine fallback system (*Native .NET* + *7-Zip CLI*), and dynamic dual-language i18n (`pt-BR` / `en-US`).
 
@@ -37,7 +37,7 @@
 
 ## ⚡ Core Engineering Features
 
-![Features Card](https://glass-hub-engine.vercel.app/api/card?title=Core+Engineering+Pillars&description=Dual-Engine+Fallback+%7C+Atomic+CLI+(evh)+%26+GUI+%7C+AES-256+Encryption+%7C+Dual-Language+i18n&tag=FEATURES&icon=gear&theme=glass-dark)
+![Features Card](https://glass-hub-engine.vercel.app/api/card?title=Core+Engineering+Pillars&description=Dual-Engine+Fallback+%7C+Atomic+CLI+(evh)+%26+GUI+%7C+AES-256+Encryption+%7C+Dual-Language+i18n&tag=FEATURES&icon=gear&width=650&theme=glass-dark)
 
 - 📦 **Smart Dual-Engine Fallback:** Operates 100% *out-of-the-box* via native `.NET` engine (`System.IO.Compression`), seamlessly leveraging the *7-Zip CLI* for advanced formats (`.7z`, `.rar`) or password protection.
 - 🧩 **Atomic Component Architecture:** CLI and GUI interfaces organized strictly into *Atoms*, *Molecules*, *Organisms*, and *Templates*.
