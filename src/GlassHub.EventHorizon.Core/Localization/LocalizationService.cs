@@ -33,20 +33,25 @@ public class LocalizationService : ILocalizationService
             ["EntryListHeader"] = "Archive Content Registry:",
             ["MetadataHeader"] = "Archive Telemetry Details:",
             
-            // GUI Modern Windows 11 Tabs & Controls
+            // GUI Modern Windows 11 Tabs, Navigation & Controls
+            ["NavCompress"] = "Compactar",
+            ["NavExtract"] = "Extrair",
+            ["NavInspect"] = "Inspetor & Ferramentas",
+            ["NavSettings"] = "Configurações",
+
             ["TabCompress"] = "📦 Compress",
             ["TabExtract"] = "📂 Extract",
             ["TabTelemetry"] = "📊 Telemetry & Inspection",
             ["SettingsTitle"] = "⚙️ System & Engine Settings",
             ["DragDropTitle"] = "Drag & Drop Files or Folders Here",
-            ["DragDropSubtitle"] = "or click the buttons below to select items visually",
+            ["DragDropSubtitle"] = "Release files here or click to browse",
             ["BtnAddFiles"] = "📁 Add Files",
             ["BtnAddFolder"] = "📁 Add Folder",
-            ["BtnClearList"] = "🗑️ Clear List",
+            ["BtnClearList"] = "🗑️ Clear All",
             ["StagedItemsHeader"] = "Selected Items to Compress ({0}):",
             ["FormatLabel"] = "Archive Format:",
             ["CompressionLevelLabel"] = "Compression Level:",
-            ["PasswordLabel"] = "Encryption Password (Optional):",
+            ["PasswordLabel"] = "Encryption Password (AES-256):",
             ["OutputPathLabel"] = "Output Archive File:",
             ["Browse"] = "Browse...",
             ["BtnCompressAction"] = "🚀 COMPRESS NOW",
@@ -68,14 +73,36 @@ public class LocalizationService : ILocalizationService
             ["LevelUltra"] = "Ultra (Maximum Compression)",
             ["LevelStore"] = "Store (No Compression)",
             ["ThemeLabel"] = "Visual Theme / Skin:",
+            ["ThemeCosmicDark"] = "GlassHub Cosmic Dark (Default)",
             ["ThemeGlassDark"] = "Glass Dark (VS Code)",
             ["ThemeFluentLight"] = "Fluent Light (Windows 11)",
             ["ThemeWinRar"] = "WinRAR Cyber (Metal)",
             ["ThemeNeon"] = "Neon Cyberpunk",
-            ["AdvancedOptions"] = "⚙️ Advanced Options",
-            ["BtnSelectUnified"] = "📁 Select Files or Folder...",
+            ["AdvancedOptions"] = "⚙️ Advanced Options (Format, Encryption, Volumes, Threads)",
+            ["BtnSelectUnified"] = "📁 Browse Files or Folder...",
             ["DragDropExtractTitle"] = "Drag & Drop Archive Here to Extract",
-            ["DragDropExtractSubtitle"] = "Supports .zip, .7z, .rar, .tar, .gz"
+            ["DragDropExtractSubtitle"] = "Supports .zip, .7z, .rar, .tar, .gz, .zst",
+
+            // 1-Click Quick Presets
+            ["PresetLabel"] = "Quick 1-Click Presets:",
+            ["PresetMinSize"] = "🗜️ Minimum Size (7z Ultra)",
+            ["PresetBalanced"] = "⚖️ Balanced (ZIP Normal)",
+            ["PresetFast"] = "⚡ Ultra Fast (Fast)",
+            ["PresetStore"] = "💎 Uncompressed / Raw",
+
+            // Granular Advanced Options
+            ["VolumeSplitLabel"] = "Split into Volumes (Part Size):",
+            ["CpuThreadsLabel"] = "CPU Core / Thread Limit:",
+            ["ThreadsAuto"] = "Auto ({0} threads detected)",
+            ["CustomCliArgsLabel"] = "Custom CLI Parameters:",
+            ["ExplorerIntegration"] = "Integrate into Windows Explorer Context Menu",
+            ["DefaultOutputDir"] = "Default Destination Directory:",
+            ["TelemetryEntries"] = "ENTRIES",
+            ["TelemetryUncompressed"] = "UNCOMPRESSED SIZE",
+            ["TelemetryRatio"] = "COMPRESSION RATIO",
+            ["TelemetryIntegrity"] = "INTEGRITY STATUS",
+            ["BatchConversion"] = "Batch Conversion & Repacking",
+            ["SearchingEntries"] = "Search archive contents..."
         },
         ["pt-BR"] = new Dictionary<string, string>
         {
@@ -102,20 +129,25 @@ public class LocalizationService : ILocalizationService
             ["EntryListHeader"] = "Registro de Conteúdo do Arquivo:",
             ["MetadataHeader"] = "Detalhes de Telemetria e Metadados:",
 
-            // GUI Modern Windows 11 Tabs & Controls
+            // GUI Modern Windows 11 Tabs, Navigation & Controls
+            ["NavCompress"] = "Compactar",
+            ["NavExtract"] = "Extrair",
+            ["NavInspect"] = "Inspetor & Ferramentas",
+            ["NavSettings"] = "Configurações",
+
             ["TabCompress"] = "📦 Compactar",
             ["TabExtract"] = "📂 Extrair",
             ["TabTelemetry"] = "📊 Telemetria & Inspeção",
-            ["SettingsTitle"] = "⚙️ Configurações do Sistema e Motor",
+            ["SettingsTitle"] = "⚙️ Configurações Globais do Sistema",
             ["DragDropTitle"] = "Arraste & Solte Arquivos ou Pastas Aqui",
-            ["DragDropSubtitle"] = "ou clique abaixo para escolher visualmente",
+            ["DragDropSubtitle"] = "Solte os arquivos aqui ou clique no botão para procurar",
             ["BtnAddFiles"] = "📁 Adicionar Arquivos",
             ["BtnAddFolder"] = "📁 Adicionar Pasta",
-            ["BtnClearList"] = "🗑️ Limpar Lista",
+            ["BtnClearList"] = "🗑️ Limpar Todos",
             ["StagedItemsHeader"] = "Itens Selecionados para Compactar ({0}):",
             ["FormatLabel"] = "Formato de Saída:",
             ["CompressionLevelLabel"] = "Nível de Compressão:",
-            ["PasswordLabel"] = "Senha de Criptografia (Opcional):",
+            ["PasswordLabel"] = "Senha de Criptografia (AES-256):",
             ["OutputPathLabel"] = "Arquivo de Saída Compactado:",
             ["Browse"] = "Procurar...",
             ["BtnCompressAction"] = "🚀 COMPACTAR AGORA",
@@ -137,14 +169,36 @@ public class LocalizationService : ILocalizationService
             ["LevelUltra"] = "Ultra (Compressão Máxima)",
             ["LevelStore"] = "Armazenar (Sem Compressão)",
             ["ThemeLabel"] = "Tema Visual / Skin:",
+            ["ThemeCosmicDark"] = "GlassHub Cosmic Dark (Padrão)",
             ["ThemeGlassDark"] = "Glass Dark (VS Code)",
             ["ThemeFluentLight"] = "Fluent Light (Windows 11)",
             ["ThemeWinRar"] = "WinRAR Cyber (Metal)",
             ["ThemeNeon"] = "Neon Cyberpunk",
-            ["AdvancedOptions"] = "⚙️ Opções Avançadas",
-            ["BtnSelectUnified"] = "📁 Selecionar Arquivos ou Pasta...",
+            ["AdvancedOptions"] = "⚙️ Opções Avançadas (Formato, Criptografia, Volumes, Threads)",
+            ["BtnSelectUnified"] = "📁 Procurar Arquivos ou Pasta...",
             ["DragDropExtractTitle"] = "Arraste o Arquivo Compactado Aqui para Extrair",
-            ["DragDropExtractSubtitle"] = "Suporta .zip, .7z, .rar, .tar, .gz"
+            ["DragDropExtractSubtitle"] = "Suporta .zip, .7z, .rar, .tar, .gz, .zst",
+
+            // 1-Click Quick Presets
+            ["PresetLabel"] = "Presets Rápidos em 1 Clique:",
+            ["PresetMinSize"] = "🗜️ Tamanho Mínimo (7z Ultra)",
+            ["PresetBalanced"] = "⚖️ Balanceado (ZIP Normal)",
+            ["PresetFast"] = "⚡ Ultra Rápido (Veloz)",
+            ["PresetStore"] = "💎 Sem Perdas / Raw",
+
+            // Granular Advanced Options
+            ["VolumeSplitLabel"] = "Divisão em Volumes (Tamanho):",
+            ["CpuThreadsLabel"] = "Limite de Threads/Núcleos de CPU:",
+            ["ThreadsAuto"] = "Automático ({0} threads detectadas)",
+            ["CustomCliArgsLabel"] = "Parâmetros Adicionais via CLI:",
+            ["ExplorerIntegration"] = "Integrar ao Menu de Contexto do Windows Explorer",
+            ["DefaultOutputDir"] = "Diretório Padrão de Extração/Saída:",
+            ["TelemetryEntries"] = "ENTRADAS",
+            ["TelemetryUncompressed"] = "TAMANHO ORIGINAL",
+            ["TelemetryRatio"] = "TAXA COMPRESSÃO",
+            ["TelemetryIntegrity"] = "INTEGRIDADE",
+            ["BatchConversion"] = "Conversão e Repacotamento em Lote",
+            ["SearchingEntries"] = "Pesquisar entradas no arquivo..."
         }
     };
 

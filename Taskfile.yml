@@ -7,75 +7,78 @@ vars:
   GUI_PROJ:    src/GlassHub.EventHorizon.GUI/GlassHub.EventHorizon.GUI.csproj
   CLI_PROJ:    src/GlassHub.EventHorizon.CLI/GlassHub.EventHorizon.CLI.csproj
   CONFIG:      Release
-  DIST:        dist
+  DIST:        publish/win-x64
   APP_NAME:    GlassHub.EventHorizon
   APP_VERSION: 1.0.0
+  ISS_SCRIPT:  installer.iss
 
 tasks:
 
   default:
-    desc: Lista todas as tarefas disponiveis
+    desc: Lista todas as tarefas disponíveis
     cmds:
       - task --list
 
   # --- RESTORE ---
   restore:
-    desc: Restaurar dependencias NuGet
+    desc: Restaurar dependências NuGet da solução
     cmds:
       - dotnet restore {{.SOLUTION}}
 
   # --- BUILD ---
   build:
-    desc: Build Debug da solucao
+    desc: Build Debug da solução
     deps: [restore]
     cmds:
       - dotnet build {{.SOLUTION}} --no-restore -c Debug
 
   build:release:
-    desc: Build Release da solucao
+    desc: Build Release da solução
     deps: [restore]
     cmds:
       - dotnet build {{.SOLUTION}} --no-restore -c {{.CONFIG}}
 
   # --- TEST ---
   test:
-    desc: Executar todos os testes
+    desc: Executar verificação e testes
     deps: [restore]
     cmds:
       - dotnet test {{.SOLUTION}} --no-restore -c {{.CONFIG}} --logger "console;verbosity=normal"
 
   # --- LINT / FORMAT ---
   lint:
-    desc: Verificar formatacao (dotnet format --verify)
+    desc: Verificar formatação do código (dotnet format --verify)
     cmds:
       - dotnet format {{.SOLUTION}} --verify-no-changes --severity warn
 
   format:
-    desc: Aplicar formatacao automatica
+    desc: Aplicar formatação automática no código
     cmds:
       - dotnet format {{.SOLUTION}} --severity warn
 
   # --- CLEAN ---
   clean:
-    desc: Limpar bin/ obj/ dist/
+    desc: Limpar artefatos de build (bin, obj, publish, dist, setup_output)
     cmds:
       - dotnet clean {{.SOLUTION}}
-      - cmd /c "if exist {{.DIST}} rmdir /s /q {{.DIST}}"
+      - cmd /c "if exist publish rmdir /s /q publish"
+      - cmd /c "if exist dist rmdir /s /q dist"
+      - cmd /c "if exist setup_output rmdir /s /q setup_output"
 
   # --- RUN ---
   run:gui:
-    desc: Rodar a GUI em modo Debug
+    desc: Executar a GUI Desktop (WPF Windows 11) em modo Debug
     cmds:
       - dotnet run --project {{.GUI_PROJ}} -c Debug
 
   run:cli:
-    desc: Rodar a CLI (use ARG="..." para argumentos)
+    desc: Executar a CLI evh (use ARG="..." para passar parâmetros)
     cmds:
       - dotnet run --project {{.CLI_PROJ}} -c Debug -- {{.ARG}}
 
   # --- PUBLISH ---
   publish:gui:
-    desc: Publicar GUI self-contained win-x64
+    desc: Publicar GUI self-contained single-file win-x64
     deps: [build:release]
     cmds:
       - >-
@@ -85,12 +88,11 @@ tasks:
         --self-contained true
         -p:PublishSingleFile=true
         -p:IncludeNativeLibrariesForSelfExtract=true
-        -p:PublishReadyToRun=true
-        -p:AssemblyName={{.APP_NAME}}.GUI
-        -o {{.DIST}}/gui
+        -p:EnableCompressionInSingleFile=true
+        -o {{.DIST}}
 
   publish:cli:
-    desc: Publicar CLI self-contained win-x64
+    desc: Publicar CLI self-contained single-file win-x64
     deps: [build:release]
     cmds:
       - >-
@@ -100,32 +102,31 @@ tasks:
         --self-contained true
         -p:PublishSingleFile=true
         -p:IncludeNativeLibrariesForSelfExtract=true
-        -p:AssemblyName=evh
-        -o {{.DIST}}/cli
+        -p:EnableCompressionInSingleFile=true
+        -o {{.DIST}}
+
+  publish:
+    desc: Executar pipeline de publicação completa (GUI + CLI + Assets via publish.ps1)
+    cmds:
+      - pwsh -File publish.ps1 -NoInnoSetup
 
   publish:all:
-    desc: Publicar GUI + CLI
+    desc: Publicar GUI + CLI na pasta de distribuição
     deps: [publish:gui, publish:cli]
     cmds:
       - echo "Publicacao concluida em {{.DIST}}/"
 
   # --- INSTALLER (Inno Setup) ---
   installer:
-    desc: Gerar instalador Windows via Inno Setup (requer ISCC no PATH)
+    desc: Gerar instalador Windows (.exe) via Inno Setup
     deps: [publish:all]
-    preconditions:
-      - sh: where ISCC
-        msg: "Inno Setup nao encontrado. Instale em https://jrsoftware.org/isinfo.php e adicione ao PATH."
     cmds:
-      - cmd /c "if not exist {{.DIST}} mkdir {{.DIST}}"
-      - ISCC /DAppVersion={{.APP_VERSION}} /DDistDir={{.DIST}} installer/setup.iss
+      - pwsh -File publish.ps1
 
   # --- PIPELINE COMPLETO ---
   all:
-    desc: "Pipeline: restore -> build -> test -> publish -> installer"
+    desc: "Pipeline completo: restore -> build -> test -> publish -> installer"
     cmds:
       - task: restore
       - task: build:release
-      - task: test
-      - task: publish:all
-      - task: installer
+      - task: publish

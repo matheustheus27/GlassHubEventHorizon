@@ -1,2 +1,7 @@
 <Solution>
+  <Project Path="src/GlassHub.EventHorizon.Core/GlassHub.EventHorizon.Core.csproj" />
+  <Project Path="src/GlassHub.EventHorizon.Engine.Native/GlassHub.EventHorizon.Engine.Native.csproj" />
+  <Project Path="src/GlassHub.EventHorizon.Engine.SevenZip/GlassHub.EventHorizon.Engine.SevenZip.csproj" />
+  <Project Path="src/GlassHub.EventHorizon.GUI/GlassHub.EventHorizon.GUI.csproj" />
+  <Project Path="src/GlassHub.EventHorizon.CLI/GlassHub.EventHorizon.CLI.csproj" />
 </Solution>

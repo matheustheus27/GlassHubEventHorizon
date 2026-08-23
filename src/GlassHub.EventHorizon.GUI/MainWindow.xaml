@@ -1,340 +1,167 @@
 <Window x:Class="GlassHub.EventHorizon.GUI.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="GlassHub Event Horizon" Height="520" Width="680"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewmodels="clr-namespace:GlassHub.EventHorizon.GUI.ViewModels"
+        xmlns:views="clr-namespace:GlassHub.EventHorizon.GUI.Views"
+        mc:Ignorable="d"
+        Title="GlassHub Event Horizon" Height="680" Width="960"
+        MinHeight="560" MinWidth="780"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None" AllowsTransparency="True"
         Background="Transparent"
+        Icon="Assets/app.ico"
         AllowDrop="True" Drop="Window_Drop" DragOver="Window_DragOver">
-    <Border Background="{DynamicResource BackgroundDarkBrush}" BorderBrush="{DynamicResource GlassBorderBrush}" BorderThickness="1" CornerRadius="12">
-        <Grid>
-            <!-- Main Window Layout Grid -->
-            <Grid Margin="12">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/> <!-- TitleBar (36px) -->
-                    <RowDefinition Height="*"/>    <!-- Content Work Area -->
-                    <RowDefinition Height="Auto"/> <!-- Footer Status Bar -->
-                </Grid.RowDefinitions>
 
-                <!-- Custom Window Chrome Header / TitleBar -->
-                <Grid Grid.Row="0" Margin="0,0,0,10" MouseLeftButtonDown="TitleBar_MouseDown" Background="Transparent">
+    <Window.Resources>
+        <!-- ViewModel to View Mapping -->
+        <DataTemplate DataType="{x:Type viewmodels:CompressViewModel}">
+            <views:CompressView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:ExtractViewModel}">
+            <views:ExtractView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:InspectViewModel}">
+            <views:InspectView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:SettingsViewModel}">
+            <views:SettingsView/>
+        </DataTemplate>
+    </Window.Resources>
+
+    <!-- Main Outer Window Border with Glassmorphic Backdrop and Rounded Corners -->
+    <Border Background="{DynamicResource BackgroundDarkBrush}" 
+            BorderBrush="{DynamicResource GlassBorderBrush}" 
+            BorderThickness="1" 
+            CornerRadius="12">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/> <!-- TitleBar -->
+                <RowDefinition Height="*"/>  <!-- Main Body (Sidebar + Content) -->
+                <RowDefinition Height="32"/> <!-- Status Footer -->
+            </Grid.RowDefinitions>
+
+            <!-- 1. Modern Windows 11 Custom TitleBar -->
+            <Grid Grid.Row="0" MouseLeftButtonDown="TitleBar_MouseDown" Background="Transparent">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Left: App Branding with Crisp High-Quality Logo -->
+                <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="14,0,0,0">
+                    <Image Source="Assets/logo.png" 
+                           Width="20" Height="20" 
+                           RenderOptions.BitmapScalingMode="HighQuality" 
+                           Margin="0,0,8,0" 
+                           VerticalAlignment="Center"/>
+                    <TextBlock Text="GlassHub Event Horizon" Foreground="{DynamicResource TextPrimaryBrush}" FontSize="12" FontWeight="Bold" VerticalAlignment="Center"/>
+                    <Border Background="{DynamicResource ControlBackgroundBrush}" CornerRadius="4" Padding="6,2" Margin="8,0,0,0">
+                        <TextBlock Text="v1.0.0 Cosmic" Foreground="{DynamicResource NeonCyanBrush}" FontSize="9" FontWeight="Bold"/>
+                    </Border>
+                </StackPanel>
+
+                <!-- Right: Window Chrome Buttons -->
+                <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,10,0">
+                    <Button x:Name="BtnMinimize" Click="BtnMinimize_Click" Padding="8,5" Margin="0,0,4,0" ToolTip="Minimizar">
+                        <Path Data="{StaticResource IconMinimize}" Stroke="{DynamicResource TextSecondaryBrush}" StrokeThickness="1.5" Width="10" Height="10" Stretch="Uniform"/>
+                    </Button>
+                    <Button x:Name="BtnMaximize" Click="BtnMaximize_Click" Padding="8,5" Margin="0,0,4,0" ToolTip="Maximizar/Restaurar">
+                        <Path Data="{StaticResource IconMaximize}" Stroke="{DynamicResource TextSecondaryBrush}" StrokeThickness="1.5" Width="10" Height="10" Stretch="Uniform"/>
+                    </Button>
+                    <Button x:Name="BtnClose" Click="BtnClose_Click" Padding="8,5" Background="#26FF4444" BorderBrush="#40FF4444" ToolTip="Fechar">
+                        <Path Data="{StaticResource IconClose}" Stroke="#FFAAAA" StrokeThickness="1.5" Width="10" Height="10" Stretch="Uniform"/>
+                    </Button>
+                </StackPanel>
+            </Grid>
+
+            <!-- 2. Windows 11 NavigationView Layout (Sidebar + Work Area) -->
+            <Grid Grid.Row="1" Margin="12,0,12,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="220"/> <!-- Sidebar Navigation -->
+                    <ColumnDefinition Width="*"/>   <!-- Main View Content Area -->
+                </Grid.ColumnDefinitions>
+
+                <!-- Sidebar Navigation Panel -->
+                <Border Grid.Column="0" Background="{DynamicResource NavBackgroundDarkBrush}" BorderBrush="{DynamicResource GlassBorderBrush}" BorderThickness="1" CornerRadius="12" Padding="8,12" Margin="0,0,12,0">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/> <!-- Section Title -->
+                            <RowDefinition Height="*"/>    <!-- Top Nav Items -->
+                            <RowDefinition Height="Auto"/> <!-- Bottom Settings -->
+                        </Grid.RowDefinitions>
+
+                        <!-- Nav Header -->
+                        <TextBlock Grid.Row="0" Text="NAVEGAÇÃO" Foreground="{DynamicResource TextSecondaryBrush}" FontSize="9" FontWeight="Bold" Margin="8,0,0,8"/>
+
+                        <!-- Navigation Items (Compress, Extract, Inspect) -->
+                        <StackPanel Grid.Row="1">
+                            <!-- 1. Compress -->
+                            <Button Style="{StaticResource NavButtonStyle}" 
+                                    Command="{Binding NavigateCompressCommand}"
+                                    Tag="{Binding IsCompressActive}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Path Data="{StaticResource IconCompress}" Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" Width="15" Height="15" Stretch="Uniform" Margin="0,0,10,0"/>
+                                    <TextBlock Text="Compactar" FontSize="12" FontWeight="SemiBold"/>
+                                </StackPanel>
+                            </Button>
+
+                            <!-- 2. Extract -->
+                            <Button Style="{StaticResource NavButtonStyle}" 
+                                    Command="{Binding NavigateExtractCommand}"
+                                    Tag="{Binding IsExtractActive}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Path Data="{StaticResource IconExtract}" Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" Width="15" Height="15" Stretch="Uniform" Margin="0,0,10,0"/>
+                                    <TextBlock Text="Extrair" FontSize="12" FontWeight="SemiBold"/>
+                                </StackPanel>
+                            </Button>
+
+                            <!-- 3. Inspect -->
+                            <Button Style="{StaticResource NavButtonStyle}" 
+                                    Command="{Binding NavigateInspectCommand}"
+                                    Tag="{Binding IsInspectActive}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Path Data="{StaticResource IconInspect}" Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" Width="15" Height="15" Stretch="Uniform" Margin="0,0,10,0"/>
+                                    <TextBlock Text="Inspetor &amp; Análise" FontSize="12" FontWeight="SemiBold"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+
+                        <!-- Pinned Bottom Navigation Item: Settings -->
+                        <StackPanel Grid.Row="2">
+                            <Separator Background="{DynamicResource GlassBorderBrush}" Margin="0,4,0,8"/>
+                            <Button Style="{StaticResource NavButtonStyle}" 
+                                    Command="{Binding NavigateSettingsCommand}"
+                                    Tag="{Binding IsSettingsActive}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Path Data="{StaticResource IconGear}" Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" Width="15" Height="15" Stretch="Uniform" Margin="0,0,10,0"/>
+                                    <TextBlock Text="Configurações" FontSize="12" FontWeight="SemiBold"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <!-- Dynamic View Area -->
+                <ContentControl Grid.Column="1" Content="{Binding CurrentView}"/>
+            </Grid>
+
+            <!-- 3. Compact Translucent Status Bar Footer -->
+            <Border Grid.Row="2" Background="{DynamicResource CardGlassBrush}" BorderBrush="{DynamicResource GlassBorderBrush}" BorderThickness="0,1,0,0" CornerRadius="0,0,12,12" Padding="14,0">
+                <Grid VerticalAlignment="Center">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-
-                    <!-- Left: Modern GlassHub Logo & App Title -->
-                    <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
-                        <Path Data="{StaticResource IconGlassHubLogo}" Fill="{DynamicResource NeonCyanBrush}" Width="16" Height="16" Stretch="Uniform" Margin="4,0,8,0"/>
-                        <TextBlock Text="GlassHub Event Horizon" Foreground="{DynamicResource TextPrimaryBrush}" FontSize="13" FontWeight="Bold"/>
-                        <Border Background="{DynamicResource ControlBackgroundBrush}" CornerRadius="4" Padding="5,1" Margin="8,0,0,0">
-                            <TextBlock Text="v1.0.0" Foreground="{DynamicResource NeonCyanBrush}" FontSize="9" FontWeight="Bold"/>
-                        </Border>
-                    </StackPanel>
-
-                    <!-- Right: Window Action Controls (Settings, Minimize, Maximize, Close) -->
-                    <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
-                        <Button x:Name="BtnOpenSettings" Click="BtnOpenSettings_Click" Padding="8,4" Margin="0,0,4,0" ToolTip="Configurações &amp; Temas">
-                            <Path Data="{StaticResource IconGear}" Fill="{DynamicResource TextSecondaryBrush}" Width="12" Height="12" Stretch="Uniform"/>
-                        </Button>
-                        <Button x:Name="BtnMinimize" Click="BtnMinimize_Click" Padding="8,4" Margin="0,0,4,0" ToolTip="Minimizar">
-                            <Path Data="{StaticResource IconMinimize}" Stroke="{DynamicResource TextSecondaryBrush}" StrokeThickness="2" Width="10" Height="10" Stretch="Uniform"/>
-                        </Button>
-                        <Button x:Name="BtnMaximize" Click="BtnMaximize_Click" Padding="8,4" Margin="0,0,4,0" ToolTip="Maximizar/Restaurar">
-                            <Path Data="{StaticResource IconMaximize}" Stroke="{DynamicResource TextSecondaryBrush}" StrokeThickness="1.5" Width="10" Height="10" Stretch="Uniform"/>
-                        </Button>
-                        <Button x:Name="BtnClose" Click="BtnClose_Click" Padding="8,4" Background="#3D2020" BorderBrush="#55FF4444" ToolTip="Fechar">
-                            <Path Data="{StaticResource IconClose}" Stroke="#FF7777" StrokeThickness="2" Width="10" Height="10" Stretch="Uniform"/>
-                        </Button>
+                    <TextBlock Grid.Column="0" Text="{Binding StatusMessage}" Foreground="{DynamicResource TextSecondaryBrush}" FontSize="11" TextTrimming="CharacterEllipsis"/>
+                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                        <Border Width="6" Height="6" Background="{DynamicResource NeonCyanBrush}" CornerRadius="3" VerticalAlignment="Center" Margin="0,0,6,0"/>
+                        <TextBlock Text="GlassHub Cosmic Engine" Foreground="{DynamicResource NeonCyanBrush}" FontSize="10" FontWeight="Bold"/>
                     </StackPanel>
                 </Grid>
-
-                <!-- Tab Control Body -->
-                <TabControl Grid.Row="1" x:Name="MainTabControl">
-                    <!-- ABA 1: COMPACTAR -->
-                    <TabItem x:Name="TabCompress">
-                        <TabItem.Header>
-                            <StackPanel Orientation="Horizontal">
-                                <Path Data="{StaticResource IconCompress}" Fill="{DynamicResource TextSecondaryBrush}" Width="13" Height="13" Stretch="Uniform" Margin="0,0,6,0"/>
-                                <TextBlock x:Name="TxtTabCompressHeader" Text="Compactar"/>
-                            </StackPanel>
-                        </TabItem.Header>
-                        <Border Background="{DynamicResource CardGlassBrush}" CornerRadius="0,10,10,10" Padding="14" BorderBrush="{DynamicResource GlassBorderBrush}" BorderThickness="1">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
-
-                                <!-- Dropzone & Unified Picker Button -->
-                                <Border Grid.Row="0" x:Name="DropZoneCompress" AllowDrop="True" Drop="DropZone_Drop" DragOver="DropZone_DragOver"
-                                        Background="{DynamicResource DropZoneBackgroundBrush}" BorderBrush="{DynamicResource NeonCyanBrush}" BorderThickness="1.5" CornerRadius="8" Padding="14" Margin="0,0,0,10" Cursor="Hand">
-                                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
-                                        <TextBlock x:Name="TxtDragDropTitle" Text="Arraste &amp; Solte Arquivos ou Pastas Aqui" Foreground="{DynamicResource TextPrimaryBrush}" FontSize="13" FontWeight="Bold" HorizontalAlignment="Center"/>
-                                        <TextBlock x:Name="TxtDragDropSubtitle" Text="ou clique no botão abaixo para selecionar" Foreground="{DynamicResource TextSecondaryBrush}" FontSize="11" HorizontalAlignment="Center" Margin="0,2,0,8"/>
-                                        <Button x:Name="BtnAddUnified" Click="BtnAddFiles_Click" Padding="12,6" Background="{DynamicResource NeonCyanBrush}" Foreground="Black" FontWeight="Bold">
-                                            <StackPanel Orientation="Horizontal">
-                                                <Path Data="{StaticResource IconFolder}" Fill="Black" Width="12" Height="12" Stretch="Uniform" Margin="0,0,6,0"/>
-                                                <TextBlock x:Name="TxtBtnSelectUnified" Text="📁 Selecionar Arquivos ou Pasta..."/>
-                                            </StackPanel>
-                                        </Button>
-                                    </StackPanel>
-                                </Border>
-
-                                <!-- Staged Items Summary List -->
-                                <Grid Grid.Row="1" Margin="0,0,0,8">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="*"/>
-                                    </Grid.RowDefinitions>
-                                    <Grid Grid.Row="0" Margin="0,0,0,4">
-                                        <TextBlock x:Name="TxtStagedHeader" Text="Itens Selecionados (0):" Foreground="{DynamicResource TextSecondaryBrush}" FontSize="11" FontWeight="SemiBold"/>
-                                        <Button x:Name="BtnClearList" Content="Limpar Lista" Click="BtnClearList_Click" HorizontalAlignment="Right" Padding="6,2" FontSize="10" Background="Transparent" BorderThickness="0" Foreground="#FF8888"/>
-                                    </Grid>
-                                    <Border Grid.Row="1" Background="{DynamicResource BackgroundDarkBrush}" BorderBrush="{DynamicResource GlassBorderBrush}" BorderThickness="1" CornerRadius="6">
-                                        <ListBox x:Name="LstStagedItems" Background="Transparent" BorderThickness="0" Padding="4">
-                                            <ListBox.ItemTemplate>
-                                                <DataTemplate>
-                                                    <Grid Margin="2">
-                                                        <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition Width="Auto"/>
-                                                            <ColumnDefinition Width="*"/>
-                                                            <ColumnDefinition Width="Auto"/>
-                                                        </Grid.ColumnDefinitions>
-                                                        <TextBlock Grid.Column="0" Text="📄 " FontSize="12" VerticalAlignment="Center"/>
-                                                        <TextBlock Grid.Column="1" Text="{Binding}" Foreground="{DynamicResource TextPrimaryBrush}" FontSize="11" VerticalAlignment="Center" Margin="4,0,8,0"/>
-                                                        <Button Grid.Column="2" Content="✕" Click="BtnRemoveItem_Click" Tag="{Binding}" Padding="4,1" FontSize="10" Background="Transparent" BorderThickness="0" Foreground="#FF7777"/>
-                                                    </Grid>
-                                                </DataTemplate>
-                                            </ListBox.ItemTemplate>
-                                        </ListBox>
-                                    </Border>
-                                </Grid>
-
-                                <!-- Expander for Progressive Disclosure Options -->
-                                <Expander Grid.Row="2" x:Name="ExpCompressOptions" Header="⚙️ Opções Avançadas (Formato, Nível, Senha)">
-                                    <Grid Margin="0,6,0,6">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="1*"/>
-                                            <ColumnDefinition Width="1*"/>
-                                            <ColumnDefinition Width="1*"/>
-                                        </Grid.ColumnDefinitions>
-                                        <StackPanel Grid.Column="0" Margin="0,0,4,0">
-                                            <TextBlock x:Name="TxtFormatLabel" Text="Formato:" Foreground="{DynamicResource TextSecondaryBrush}" FontSize="11"/>
-                                            <ComboBox x:Name="CmbFormat" SelectionChanged="CmbFormat_SelectionChanged" Margin="0,2,0,0">
-                                                <ComboBoxItem Content=".zip (Universal)" IsSelected="True"/>
-                                                <ComboBoxItem Content=".7z (Alta Compressão)"/>
-                                                <ComboBoxItem Content=".tar (POSIX Archive)"/>
-                                                <ComboBoxItem Content=".gz (GZip)"/>
-                                            </ComboBox>
-                                        </StackPanel>
-
-                                        <StackPanel Grid.Column="1" Margin="4,0,4,0">
-                                            <TextBlock x:Name="TxtCompressionLevelLabel" Text="Nível:" Foreground="{DynamicResource TextSecondaryBrush}" FontSize="11"/>
-                                            <ComboBox x:Name="CmbCompressionLevel" Margin="0,2,0,0">
-                                                <ComboBoxItem Content="Normal (Balanceado)" IsSelected="True"/>
-                                                <ComboBoxItem Content="Rápido (Veloz)"/>
-                                                <ComboBoxItem Content="Ultra (Máximo)"/>
-                                                <ComboBoxItem Content="Armazenar"/>
-                                            </ComboBox>
-                                        </StackPanel>
-
-                                        <StackPanel Grid.Column="2" Margin="4,0,0,0">
-                                            <TextBlock x:Name="TxtCompressPasswordLabel" Text="Senha (Opcional):" Foreground="{DynamicResource TextSecondaryBrush}" FontSize="11"/>
-                                            <PasswordBox x:Name="TxtCompressPassword" Margin="0,2,0,0"/>
-                                        </StackPanel>
-                                    </Grid>
-                                </Expander>
-
-                                <!-- Compress Action Button -->
-                                <Button Grid.Row="3" x:Name="BtnCompress" Content="🚀 COMPACTAR AGORA" Click="BtnCompress_Click" Padding="10" Background="{DynamicResource NeonCyanBrush}" Foreground="Black" FontSize="13" FontWeight="Bold"/>
-                            </Grid>
-                        </Border>
-                    </TabItem>
-
-                    <!-- ABA 2: EXTRAIR -->
-                    <TabItem x:Name="TabExtract">
-                        <TabItem.Header>
-                            <StackPanel Orientation="Horizontal">
-                                <Path Data="{StaticResource IconExtract}" Fill="{DynamicResource TextSecondaryBrush}" Width="13" Height="13" Stretch="Uniform" Margin="0,0,6,0"/>
-                                <TextBlock x:Name="TxtTabExtractHeader" Text="Extrair"/>
-                            </StackPanel>
-                        </TabItem.Header>
-                        <Border Background="{DynamicResource CardGlassBrush}" CornerRadius="0,10,10,10" Padding="14" BorderBrush="{DynamicResource GlassBorderBrush}" BorderThickness="1">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
-
-                                <!-- Dropzone for Extract Tab -->
-                                <Border Grid.Row="0" x:Name="DropZoneExtract" AllowDrop="True" Drop="DropZoneExtract_Drop" DragOver="DropZoneExtract_DragOver"
-                                        Background="{DynamicResource DropZoneBackgroundBrush}" BorderBrush="{DynamicResource NeonMagentaBrush}" BorderThickness="1.5" CornerRadius="8" Padding="14" Margin="0,0,0,10" Cursor="Hand">
-                                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
-                                        <TextBlock x:Name="TxtDragDropExtractTitle" Text="Arraste o Arquivo Compactado Aqui para Extrair" Foreground="{DynamicResource TextPrimaryBrush}" FontSize="13" FontWeight="Bold" HorizontalAlignment="Center"/>
-                                        <TextBlock x:Name="TxtDragDropExtractSubtitle" Text="Suporta .zip, .7z, .rar, .tar, .gz" Foreground="{DynamicResource TextSecondaryBrush}" FontSize="11" HorizontalAlignment="Center" Margin="0,2,0,8"/>
-                                        <Button x:Name="BtnBrowseExtractSource" Content="📁 Selecionar Arquivo..." Click="BtnBrowseExtractSource_Click" Padding="12,6" Background="{DynamicResource NeonMagentaBrush}" Foreground="White" FontWeight="Bold"/>
-                                    </StackPanel>
-                                </Border>
-
-                                <!-- Selected Archive Summary -->
-                                <StackPanel Grid.Row="1" Orientation="Vertical" Margin="0,0,0,10">
-                                    <TextBlock x:Name="TxtArchiveSelectLabel" Text="Arquivo Selecionado:" Foreground="{DynamicResource TextSecondaryBrush}" FontSize="11" Margin="0,0,0,4"/>
-                                    <TextBox x:Name="TxtExtractSource" IsReadOnly="False" Margin="0,0,0,8"/>
-
-                                    <TextBlock x:Name="TxtDestFolderLabel" Text="Diretório de Destino:" Foreground="{DynamicResource TextSecondaryBrush}" FontSize="11" Margin="0,0,0,4"/>
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="Auto"/>
-                                        </Grid.ColumnDefinitions>
-                                        <TextBox Grid.Column="0" x:Name="TxtExtractDest" Margin="0,0,6,0"/>
-                                        <Button Grid.Column="1" x:Name="BtnBrowseExtractDest" Content="Procurar..." Click="BtnBrowseExtractDest_Click" Padding="8,4"/>
-                                    </Grid>
-                                </StackPanel>
-
-                                <!-- Expander for Extract Password Options -->
-                                <Expander Grid.Row="2" x:Name="ExpExtractOptions" Header="⚙️ Opções Avançadas (Senha de Descriptografia)">
-                                    <StackPanel Orientation="Vertical" Margin="0,4,0,4">
-                                        <TextBlock x:Name="TxtExtractPasswordLabel" Text="Senha (Se Criptografado):" Foreground="{DynamicResource TextSecondaryBrush}" FontSize="11"/>
-                                        <PasswordBox x:Name="TxtExtractPassword" Margin="0,2,0,0"/>
-                                    </StackPanel>
-                                </Expander>
-
-                                <!-- Extract Action Button -->
-                                <Button Grid.Row="3" x:Name="BtnExtract" Content="⚡ EXTRAIR AGORA" Click="BtnExtract_Click" Padding="10" Background="{DynamicResource NeonMagentaBrush}" Foreground="White" FontSize="13" FontWeight="Bold"/>
-                            </Grid>
-                        </Border>
-                    </TabItem>
-
-                    <!-- ABA 3: TELEMETRIA -->
-                    <TabItem x:Name="TabTelemetry">
-                        <TabItem.Header>
-                            <StackPanel Orientation="Horizontal">
-                                <Path Data="{StaticResource IconChart}" Fill="{DynamicResource TextSecondaryBrush}" Width="13" Height="13" Stretch="Uniform" Margin="0,0,6,0"/>
-                                <TextBlock x:Name="TxtTabTelemetryHeader" Text="Telemetria &amp; Inspeção"/>
-                            </StackPanel>
-                        </TabItem.Header>
-                        <Border Background="{DynamicResource CardGlassBrush}" CornerRadius="0,10,10,10" Padding="14" BorderBrush="{DynamicResource GlassBorderBrush}" BorderThickness="1">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
-
-                                <Grid Grid.Row="0" Margin="0,0,0,10">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBox Grid.Column="0" x:Name="TxtTelemetrySource" Margin="0,0,6,0"/>
-                                    <Button Grid.Column="1" x:Name="BtnBrowseTelemetrySource" Content="Procurar..." Click="BtnBrowseTelemetrySource_Click" Margin="0,0,6,0" Padding="8,4"/>
-                                    <Button Grid.Column="2" x:Name="BtnInspect" Content="🔍 Inspecionar" Click="BtnInspect_Click" Padding="10,4" Background="{DynamicResource NeonCyanBrush}" Foreground="Black" FontWeight="Bold"/>
-                                </Grid>
-
-                                <!-- Metrics Cards -->
-                                <Grid Grid.Row="1" Margin="0,0,0,10">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="1*"/>
-                                        <ColumnDefinition Width="1*"/>
-                                        <ColumnDefinition Width="1*"/>
-                                        <ColumnDefinition Width="1*"/>
-                                    </Grid.ColumnDefinitions>
-
-                                    <Border Grid.Column="0" Background="{DynamicResource BackgroundDarkBrush}" CornerRadius="6" Padding="8" Margin="0,0,4,0" BorderBrush="{DynamicResource GlassBorderBrush}" BorderThickness="1">
-                                        <StackPanel>
-                                            <TextBlock Text="ENTRADAS" Foreground="{DynamicResource TextSecondaryBrush}" FontSize="9" FontWeight="Bold"/>
-                                            <TextBlock x:Name="TxtTelemetryCount" Text="0" Foreground="{DynamicResource TextPrimaryBrush}" FontSize="14" FontWeight="Bold"/>
-                                        </StackPanel>
-                                    </Border>
-
-                                    <Border Grid.Column="1" Background="{DynamicResource BackgroundDarkBrush}" CornerRadius="6" Padding="8" Margin="2,0,2,0" BorderBrush="{DynamicResource GlassBorderBrush}" BorderThickness="1">
-                                        <StackPanel>
-                                            <TextBlock Text="TAMANHO ORIGINAL" Foreground="{DynamicResource TextSecondaryBrush}" FontSize="9" FontWeight="Bold"/>
-                                            <TextBlock x:Name="TxtTelemetryUncompressed" Text="0 KB" Foreground="{DynamicResource NeonCyanBrush}" FontSize="14" FontWeight="Bold"/>
-                                        </StackPanel>
-                                    </Border>
-
-                                    <Border Grid.Column="2" Background="{DynamicResource BackgroundDarkBrush}" CornerRadius="6" Padding="8" Margin="2,0,2,0" BorderBrush="{DynamicResource GlassBorderBrush}" BorderThickness="1">
-                                        <StackPanel>
-                                            <TextBlock Text="TAXA COMPRESSÃO" Foreground="{DynamicResource TextSecondaryBrush}" FontSize="9" FontWeight="Bold"/>
-                                            <TextBlock x:Name="TxtTelemetryRatio" Text="0.0 %" Foreground="{DynamicResource NeonMagentaBrush}" FontSize="14" FontWeight="Bold"/>
-                                        </StackPanel>
-                                    </Border>
-
-                                    <Border Grid.Column="3" Background="{DynamicResource BackgroundDarkBrush}" CornerRadius="6" Padding="8" Margin="4,0,0,0" BorderBrush="{DynamicResource GlassBorderBrush}" BorderThickness="1">
-                                        <StackPanel>
-                                            <TextBlock Text="INTEGRIDADE" Foreground="{DynamicResource TextSecondaryBrush}" FontSize="9" FontWeight="Bold"/>
-                                            <TextBlock x:Name="TxtTelemetryIntegrity" Text="PASSED" Foreground="#55FF55" FontSize="13" FontWeight="Bold"/>
-                                        </StackPanel>
-                                    </Border>
-                                </Grid>
-
-                                <!-- Entry List -->
-                                <Border Grid.Row="2" Background="{DynamicResource BackgroundDarkBrush}" BorderBrush="{DynamicResource GlassBorderBrush}" BorderThickness="1" CornerRadius="6">
-                                    <ListBox x:Name="LstTelemetryEntries" Background="Transparent" BorderThickness="0" Foreground="{DynamicResource TextPrimaryBrush}"/>
-                                </Border>
-                            </Grid>
-                        </Border>
-                    </TabItem>
-                </TabControl>
-
-                <!-- Footer Status Bar -->
-                <Border Grid.Row="2" Background="{DynamicResource CardGlassBrush}" CornerRadius="6" Padding="10,6" Margin="0,10,0,0" BorderBrush="{DynamicResource GlassBorderBrush}" BorderThickness="1">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" x:Name="TxtStatus" Text="Status: Pronto | GlassHub Engine" Foreground="{DynamicResource TextSecondaryBrush}" FontSize="11"/>
-                        <TextBlock Grid.Column="1" Text="Modern Design" Foreground="{DynamicResource NeonCyanBrush}" FontSize="10" FontWeight="Bold"/>
-                    </Grid>
-                </Border>
-            </Grid>
-
-            <!-- Settings Modal Overlay (⚙️ Configurações & Temas) -->
-            <Grid x:Name="SettingsOverlay" Visibility="Collapsed" Background="#D0000000">
-                <Border Width="420" HorizontalAlignment="Center" VerticalAlignment="Center" Background="{DynamicResource CardGlassBrush}" CornerRadius="12" BorderBrush="{DynamicResource NeonCyanBrush}" BorderThickness="1" Padding="20">
-                    <StackPanel Orientation="Vertical">
-                        <Grid Margin="0,0,0,16">
-                            <TextBlock x:Name="TxtSettingsTitle" Text="⚙️ Configurações do Sistema" Foreground="{DynamicResource TextPrimaryBrush}" FontSize="16" FontWeight="Bold"/>
-                            <Button x:Name="BtnCloseSettingsX" Click="BtnCloseSettings_Click" HorizontalAlignment="Right" Padding="6,2" Background="Transparent" BorderThickness="0" Foreground="{DynamicResource TextSecondaryBrush}">
-                                <Path Data="{StaticResource IconClose}" Stroke="{DynamicResource TextSecondaryBrush}" StrokeThickness="2" Width="10" Height="10" Stretch="Uniform"/>
-                            </Button>
-                        </Grid>
-
-                        <TextBlock x:Name="TxtThemeLabel" Text="Tema Visual / Skin:" Foreground="{DynamicResource TextSecondaryBrush}" Margin="0,0,0,4" FontSize="12"/>
-                        <ComboBox x:Name="CmbTheme" SelectionChanged="CmbTheme_SelectionChanged" Margin="0,0,0,16">
-                            <ComboBoxItem Content="Glass Dark (VS Code)" IsSelected="True"/>
-                            <ComboBoxItem Content="Fluent Light (Windows 11)"/>
-                            <ComboBoxItem Content="WinRAR Cyber (Metal)"/>
-                            <ComboBoxItem Content="Neon Cyberpunk"/>
-                        </ComboBox>
-
-                        <TextBlock x:Name="TxtLanguageLabel" Text="Idioma da Interface:" Foreground="{DynamicResource TextSecondaryBrush}" Margin="0,0,0,4" FontSize="12"/>
-                        <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
-                            <Button x:Name="BtnLangPt" Content="🇧🇷 Português" Click="BtnLangPt_Click" Margin="0,0,8,0" Padding="10,6" Background="{DynamicResource NeonCyanBrush}" Foreground="Black" FontWeight="Bold"/>
-                            <Button x:Name="BtnLangEn" Content="🇺🇸 English" Click="BtnLangEn_Click" Padding="10,6"/>
-                        </StackPanel>
-
-                        <TextBlock x:Name="TxtEngineSelectLabel" Text="Motor Preferido:" Foreground="{DynamicResource TextSecondaryBrush}" Margin="0,0,0,4" FontSize="12"/>
-                        <ComboBox x:Name="CmbPreferredEngine" Margin="0,0,0,20">
-                            <ComboBoxItem Content="Chaveamento Inteligente (Smart Fallback)" IsSelected="True"/>
-                            <ComboBoxItem Content="Motor Nativo .NET"/>
-                            <ComboBoxItem Content="Motor 7-Zip CLI"/>
-                        </ComboBox>
-
-                        <Button x:Name="BtnSaveSettings" Content="Salvar e Aplicar Configurações" Click="BtnCloseSettings_Click" Padding="10" Background="{DynamicResource NeonCyanBrush}" Foreground="Black" FontWeight="Bold" FontSize="13"/>
-                    </StackPanel>
-                </Border>
-            </Grid>
+            </Border>
         </Grid>
     </Border>
 </Window>

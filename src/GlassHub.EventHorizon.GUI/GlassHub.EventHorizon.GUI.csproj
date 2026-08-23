@@ -7,7 +7,14 @@
     <Nullable>enable</Nullable>
     <RootNamespace>GlassHub.EventHorizon.GUI</RootNamespace>
     <AssemblyName>GlassHub.EventHorizon.GUI</AssemblyName>
+    <ApplicationIcon>Assets\app.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\app.ico" />
+    <Resource Include="Assets\logo.png" />
+    <Resource Include="Assets\logo.svg" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\GlassHub.EventHorizon.Core\GlassHub.EventHorizon.Core.csproj" />

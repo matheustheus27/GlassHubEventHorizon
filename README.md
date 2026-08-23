@@ -6,7 +6,7 @@
 
   # GlassHub Event Horizon
 
-  <p><strong>High-performance stream-based file compression, extraction, and telemetry tool built for the GlassHub Ecosystem.</strong></p>
+  <p><strong>High-Performance Stream-Based File Compression, Extraction, and Telemetry Desktop Application &amp; CLI for the GlassHub Ecosystem.</strong></p>
 
   <p>
     <a href="https://glass-hub-engine.vercel.app/api/badge?label=GlassHub&value=Ecosystem&icon=glasshub&theme=glass-dark&glow=true">
@@ -14,6 +14,9 @@
     </a>
     <a href="https://glass-hub-engine.vercel.app/api/badge?label=.NET&value=v8.0&icon=csharp&theme=glass-dark&glow=true">
       <img src="https://glass-hub-engine.vercel.app/api/badge?label=.NET&value=v8.0&icon=csharp&theme=glass-dark&glow=true" alt=".NET 8.0" />
+    </a>
+    <a href="https://glass-hub-engine.vercel.app/api/badge?label=GUI&value=Windows11--WPF&icon=windows&theme=glass-dark&glow=true">
+      <img src="https://glass-hub-engine.vercel.app/api/badge?label=GUI&value=Windows11--WPF&icon=windows&theme=glass-dark&glow=true" alt="Windows 11 WPF" />
     </a>
     <a href="https://glass-hub-engine.vercel.app/api/badge?label=CLI&value=evh&icon=vscode&theme=glass-dark&glow=true">
       <img src="https://glass-hub-engine.vercel.app/api/badge?label=CLI&value=evh&icon=vscode&theme=glass-dark&glow=true" alt="evh CLI" />
@@ -29,33 +32,53 @@
 
 ## 🌐 Project Overview
 
-![Overview Card](https://glass-hub-engine.vercel.app/api/card?title=GlassHub+Event+Horizon&description=High-Performance+Stream-Based+Compression+%26+Telemetry+Engine+for+the+GlassHub+Ecosystem.&tag=Cosmic+Arch&icon=sparkles&width=650&theme=glass-dark)
+![Overview Card](https://glass-hub-engine.vercel.app/api/card?title=GlassHub+Event+Horizon&description=High-Performance+Stream-Based+Compression+%26+Telemetry+Engine+with+Cosmic+Glassmorphism.&tag=Cosmic+Arch&icon=sparkles&width=650&theme=glass-dark)
 
-**GlassHubEventHorizon** is a high-performance stream-based desktop application and CLI tool for specialized file compression, extraction, and telemetry inspection. Architected with **Clean Architecture**, **Atomic Component Design** (Atoms, Molecules, Organisms, Templates), a smart dual-engine fallback system (*Native .NET* + *7-Zip CLI*), and dynamic dual-language i18n (`pt-BR` / `en-US`).
+**GlassHubEventHorizon** is a high-performance stream-based desktop application and CLI tool for specialized file compression, extraction, and telemetry inspection. Built with **WPF & .NET 8**, it adopts a native **Windows 11 Cosmic Dark Glassmorphism** visual identity, decoupled **MVVM architecture**, dual-engine fallback (*Native .NET* + *7-Zip CLI*), and dynamic dual-language localization (`pt-BR` / `en-US`).
 
 ---
 
 ## ⚡ Core Engineering Features
 
-![Features Card](https://glass-hub-engine.vercel.app/api/card?title=Core+Engineering+Pillars&description=Dual-Engine+Fallback+%7C+Atomic+CLI+(evh)+%26+GUI+%7C+AES-256+Encryption+%7C+Dual-Language+i18n&tag=FEATURES&icon=gear&width=650&theme=glass-dark)
+![Features Card](https://glass-hub-engine.vercel.app/api/card?title=Core+Engineering+Pillars&description=Dual-Engine+Fallback+%7C+Windows+11+NavigationView+%7C+1-Click+Presets+%7C+AES-256+Encryption+%7C+Inno+Setup&tag=FEATURES&icon=gear&width=650&theme=glass-dark)
 
-- 📦 **Smart Dual-Engine Fallback:** Operates 100% *out-of-the-box* via native `.NET` engine (`System.IO.Compression`), seamlessly leveraging the *7-Zip CLI* for advanced formats (`.7z`, `.rar`) or password protection.
-- 🧩 **Atomic Component Architecture:** CLI and GUI interfaces organized strictly into *Atoms*, *Molecules*, *Organisms*, and *Templates*.
-- 🌐 **i18n Dual-Language Support:** Runtime culture switching between English (`en-US`) and Portuguese (`pt-BR`).
-- 📊 **Complete Telemetry Inspection:** Calculates compression ratio (%), entry counts, structural integrity verification, and applied engine metadata.
+- 🌌 **Windows 11 Cosmic Dark (Glassmorphism):** Deep space backdrop (`#070B13`), glass cards (`#0E1626`), and neon cyan accents (`#00E5FF`) with customizable live themes (*Cosmic Dark*, *Fluent Light*, *WinRAR Cyber*, *Neon Cyberpunk*, *Glass Dark*).
+- 🧭 **Modular NavigationView:** Clean lateral navigation split into **Compactar (Compress)**, **Extrair (Extract)**, **Inspetor (Inspect)**, and **Configurações (Settings)**.
+- 🎯 **1-Click Quick Presets:** Instant selection pills (*Balanceado*, *Tamanho Mínimo (7z Ultra)*, *Ultra Rápido*, *Sem Perdas / Raw*).
+- 🧩 **Progressive Disclosure:** Collapsible expanders for advanced settings: multi-format selection (`.zip`, `.7z`, `.tar`, `.gz`, `.zst`), AES-256 password encryption, volume splitting (CD, DVD, custom), and CPU core/thread allocation sliders.
+- 📦 **Smart Dual-Engine Fallback:** Operates 100% *out-of-the-box* via native `.NET` engine (`System.IO.Compression`), seamlessly leveraging the *7-Zip CLI* for advanced formats (`.7z`, `.rar`, `.tar`, `.gz`, `.zst`) or encrypted archives.
+- 🛡️ **Complete Telemetry & CRC Inspection:** Calculates compression ratios (%), original uncompressed size, entry count registry, and verifies archive structural integrity.
+- 🌐 **Dynamic Dual-Language i18n:** Live switching between Portuguese (`pt-BR`) and English (`en-US`).
+- 💿 **Installer & Windows Explorer Integration:** Complete Inno Setup script (`installer.iss`) and automated publishing pipeline (`publish.ps1`) adding context menu actions (*"Abrir / Compactar com GlassHub EventHorizon"*).
 
 ---
 
-## 🚀 Command Line Interface (`evh` Quickstart)
+## 🚀 Quickstart & Commands
 
-The official command-line executable is short, memorable, and easy to run: **`evh`**.
+### Taskfile (`task`) & Makefile (`make`)
+
+| Command | Equivalent Make | Description |
+| :--- | :--- | :--- |
+| `task build` | `make build` | Build Debug da solução completa |
+| `task build:release` | `make build-release` | Build Release da solução completa |
+| `task run:gui` | `make run-gui` | Executar aplicação Desktop WPF Windows 11 |
+| `task run:cli ARG="--help"` | `make run-cli ARG="--help"` | Executar utilitário de linha de comando `evh` |
+| `task publish` | `make publish` | Publicar binários self-contained single-file (`win-x64`) |
+| `task installer` | `make installer` | Gerar instalador Windows oficial via Inno Setup |
+| `task clean` | `make clean` | Limpar binários, cache e pastas de publicação |
+
+---
+
+## 💻 CLI Usage (`evh`)
+
+The official command-line executable is short, memorable, and fast: **`evh`**.
 
 ```bash
-# Compress files or directories (using positional or flag syntax)
+# Compress files or directories into an archive
 evh compress -i data/ -o backup.zip
 evh -c -i data/ -o backup.zip
 
-# Extract archive contents
+# Extract archive contents into a destination folder
 evh extract -f backup.zip -d output/
 evh -x -f backup.zip -d output/
 
@@ -67,7 +90,7 @@ evh --info -f backup.zip
 evh list -f backup.zip
 evh --list -f backup.zip
 
-# Verify structural integrity
+# Verify structural integrity (CRC check)
 evh verify -f backup.zip
 evh -v -f backup.zip
 
@@ -76,20 +99,30 @@ evh help
 evh --help
 ```
 
-### Desktop GUI Application:
-```bash
-dotnet run --project src/GlassHub.EventHorizon.GUI
+---
+
+## 📦 Automated Build & Installer Pipeline
+
+### 1. Build Single-File Release
+```powershell
+pwsh -File publish.ps1
 ```
+Generates single-file self-contained executables in `./publish/win-x64/`:
+- `GlassHub.EventHorizon.GUI.exe`
+- `evh.exe`
+- `app.ico` & `logo.png`
+
+### 2. Generate Setup Installer
+```powershell
+ISCC.exe installer.iss
+```
+Generates the official installer `setup_output/GlassHubEventHorizon_Setup_v1.0.0.exe`.
 
 ---
 
 ## 📚 Technical Documentation (`docs/`)
 
-All technical documentation is written in clear, accessible, and didactic language for developers across all levels (from intern to staff engineer):
-
-![Documentation Table](https://glass-hub-engine.vercel.app/api/table?title=Technical+Documentation&columns=Guide,Description,File&rows=Architecture,Clean+Architecture+%26+Dual+Engine,docs%2Farchitecture.md;Components,Atomic+Design+Architecture,docs%2Fcomponents.md;Execution,Build+Guide+%26+evh+CLI+Manual,docs%2Fexecution.md;i18n+%26+Design,Localization+%26+Glassmorphic+Theme,docs%2Fi18n-and-design.md&width=820&col_widths=22,50,28&theme=glass-dark)
-
-- [📐 **Architecture Guide (`docs/architecture.md`)**](docs/architecture.md) — Clean Architecture, SOLID principles, and dual engine design.
+- [📐 **Architecture Guide (`docs/architecture.md`)**](docs/architecture.md) — Clean Architecture, MVVM, and dual engine design.
 - [🧩 **Atomic Components (`docs/components.md`)**](docs/components.md) — Atoms, Molecules, Organisms, and Templates breakdown.
 - [🚀 **Execution & CLI Guide (`docs/execution.md`)**](docs/execution.md) — Build steps, local execution, and complete `evh` CLI manual.
 - [🌐 **i18n & Design System (`docs/i18n-and-design.md`)**](docs/i18n-and-design.md) — Dual language localization and GlassHub visual identity.
@@ -98,10 +131,6 @@ All technical documentation is written in clear, accessible, and didactic langua
 
 ## ⚖️ Software License
 
-Published under the **Proprietary, Source-Available, Non-Commercial License**. Read the `LICENSE` file for complete terms.
+This project is licensed under a proprietary source-available non-commercial license. See the [LICENSE](LICENSE) file for complete legal terms.
 
----
-
-<div align="center">
-  <sub>Forged with ❤️ by <b>Matheus Ferreira</b> — GlassHub Ecosystem © 2026</sub>
-</div>
+Copyright (c) 2026 Matheus Ferreira. All rights reserved.

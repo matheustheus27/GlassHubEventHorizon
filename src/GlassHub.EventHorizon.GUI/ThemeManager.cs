@@ -16,6 +16,7 @@ public static class ThemeManager
         {
             case "Fluent Light": // Windows 11 Light Theme
                 SetResourceColor(res, "BackgroundDarkColor", "#F3F3F7");
+                SetResourceColor(res, "NavBackgroundDarkColor", "#E8E8EE");
                 SetResourceColor(res, "CardGlassBackground", "#FFFFFF");
                 SetResourceColor(res, "PopupBackgroundColor", "#FFFFFF");
                 SetResourceColor(res, "GlassBorderColor", "#D1D5DB");
@@ -29,6 +30,7 @@ public static class ThemeManager
 
             case "WinRAR Cyber": // Dark Metal Cyber Style
                 SetResourceColor(res, "BackgroundDarkColor", "#181A1F");
+                SetResourceColor(res, "NavBackgroundDarkColor", "#14161A");
                 SetResourceColor(res, "CardGlassBackground", "#21252B");
                 SetResourceColor(res, "PopupBackgroundColor", "#282C34");
                 SetResourceColor(res, "GlassBorderColor", "#3B4048");
@@ -42,6 +44,7 @@ public static class ThemeManager
 
             case "Neon Cyberpunk": // Vibrant Cyberpunk Style
                 SetResourceColor(res, "BackgroundDarkColor", "#0B0813");
+                SetResourceColor(res, "NavBackgroundDarkColor", "#07050E");
                 SetResourceColor(res, "CardGlassBackground", "#15102A");
                 SetResourceColor(res, "PopupBackgroundColor", "#1D1737");
                 SetResourceColor(res, "GlassBorderColor", "#FF007F");
@@ -53,18 +56,33 @@ public static class ThemeManager
                 SetResourceColor(res, "ControlBackgroundColor", "#231B44");
                 break;
 
-            case "Glass Dark": // Default VS Code / GitHub Dark
-            default:
+            case "Glass Dark": // VS Code / GitHub Dark
                 SetResourceColor(res, "BackgroundDarkColor", "#0D1117");
+                SetResourceColor(res, "NavBackgroundDarkColor", "#090D13");
                 SetResourceColor(res, "CardGlassBackground", "#161B22");
                 SetResourceColor(res, "PopupBackgroundColor", "#21262D");
                 SetResourceColor(res, "GlassBorderColor", "#30363D");
                 SetResourceColor(res, "TextPrimaryColor", "#F0F6FC");
                 SetResourceColor(res, "TextSecondaryColor", "#8B949E");
-                SetResourceColor(res, "NeonCyanColor", "#58a6ffff");
-                SetResourceColor(res, "NeonMagentaColor", "#58a6ffff");
+                SetResourceColor(res, "NeonCyanColor", "#58A6FF");
+                SetResourceColor(res, "NeonMagentaColor", "#7EE787");
                 SetResourceColor(res, "DropZoneBackgroundColor", "#090D13");
                 SetResourceColor(res, "ControlBackgroundColor", "#21262D");
+                break;
+
+            case "GlassHub Cosmic Dark": // GlassHub Cosmic Glassmorphism Signature Theme
+            default:
+                SetResourceColor(res, "BackgroundDarkColor", "#070B13");
+                SetResourceColor(res, "NavBackgroundDarkColor", "#05080E");
+                SetResourceColor(res, "CardGlassBackground", "#0E1626");
+                SetResourceColor(res, "PopupBackgroundColor", "#111C30");
+                SetResourceColor(res, "GlassBorderColor", "#2600E5FF");
+                SetResourceColor(res, "TextPrimaryColor", "#F0F6FC");
+                SetResourceColor(res, "TextSecondaryColor", "#8B9BB4");
+                SetResourceColor(res, "NeonCyanColor", "#00E5FF");
+                SetResourceColor(res, "NeonMagentaColor", "#8054FF");
+                SetResourceColor(res, "DropZoneBackgroundColor", "#090F1B");
+                SetResourceColor(res, "ControlBackgroundColor", "#111C30");
                 break;
         }
     }

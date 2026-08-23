@@ -7,10 +7,10 @@ SOLUTION    := GlassHubEventHorizon.slnx
 GUI_PROJ    := src/GlassHub.EventHorizon.GUI/GlassHub.EventHorizon.GUI.csproj
 CLI_PROJ    := src/GlassHub.EventHorizon.CLI/GlassHub.EventHorizon.CLI.csproj
 CONFIG      := Release
-DIST        := dist
+DIST        := publish/win-x64
 APP_NAME    := GlassHub.EventHorizon
 APP_VERSION := 1.0.0
-ISS_SCRIPT  := installer/setup.iss
+ISS_SCRIPT  := installer.iss
 
 .PHONY: help restore build build-release test lint format clean \
         run-gui run-cli publish-gui publish-cli publish installer all
@@ -20,18 +20,18 @@ help:
 	@echo ""
 	@echo "  GlassHub Event Horizon — Tarefas disponíveis"
 	@echo "  ─────────────────────────────────────────────"
-	@echo "  make restore        Restaurar pacotes NuGet"
+	@echo "  make restore        Restaurar pacotes NuGet da solução"
 	@echo "  make build          Build Debug da solução"
 	@echo "  make build-release  Build Release da solução"
 	@echo "  make test           Executar todos os testes"
 	@echo "  make lint           Verificar formatação (dotnet format --verify)"
 	@echo "  make format         Aplicar formatação automática"
-	@echo "  make clean          Limpar bin/ obj/ dist/"
-	@echo "  make run-gui        Rodar a GUI (Debug)"
-	@echo "  make run-cli ARG=.. Rodar a CLI com argumentos opcionais"
+	@echo "  make clean          Limpar bin/ obj/ dist/ publish/ setup_output/"
+	@echo "  make run-gui        Rodar a GUI (WPF Windows 11)"
+	@echo "  make run-cli ARG=.. Rodar a CLI evh com argumentos opcionais"
 	@echo "  make publish-gui    Publicar GUI self-contained (win-x64)"
 	@echo "  make publish-cli    Publicar CLI self-contained (win-x64)"
-	@echo "  make publish        Publicar GUI + CLI"
+	@echo "  make publish        Publicar GUI + CLI via publish.ps1"
 	@echo "  make installer      Gerar instalador Windows (Inno Setup)"
 	@echo "  make all            Restore → Build → Test → Publish → Installer"
 	@echo ""
@@ -68,7 +68,9 @@ format:
 clean:
 	@echo "[clean] Limpando artefatos..."
 	dotnet clean $(SOLUTION)
-	@if exist $(DIST) rmdir /s /q $(DIST) 2>nul || rm -rf $(DIST)
+	@if exist publish rmdir /s /q publish 2>nul || rm -rf publish
+	@if exist dist rmdir /s /q dist 2>nul || rm -rf dist
+	@if exist setup_output rmdir /s /q setup_output 2>nul || rm -rf setup_output
 
 # ─── RUN ──────────────────────────────────────────────────────────────────────
 run-gui:
@@ -88,9 +90,8 @@ publish-gui: build-release
 		--self-contained true \
 		-p:PublishSingleFile=true \
 		-p:IncludeNativeLibrariesForSelfExtract=true \
-		-p:PublishReadyToRun=true \
-		-p:AssemblyName=$(APP_NAME).GUI \
-		-o $(DIST)/gui
+		-p:EnableCompressionInSingleFile=true \
+		-o $(DIST)
 
 publish-cli: build-release
 	@echo "[publish-cli] Publicando CLI self-contained..."
@@ -100,21 +101,21 @@ publish-cli: build-release
 		--self-contained true \
 		-p:PublishSingleFile=true \
 		-p:IncludeNativeLibrariesForSelfExtract=true \
-		-p:AssemblyName=evh \
-		-o $(DIST)/cli
+		-p:EnableCompressionInSingleFile=true \
+		-o $(DIST)
 
-publish: publish-gui publish-cli
-	@echo "[publish] GUI + CLI publicados em $(DIST)/"
+publish:
+	@echo "[publish] Executando publish.ps1..."
+	pwsh -File publish.ps1 -NoInnoSetup
 
 # ─── INSTALLER (Inno Setup) ───────────────────────────────────────────────────
-installer: publish
-	@echo "[installer] Gerando instalador Windows (Inno Setup)..."
-	@if not exist $(DIST) mkdir $(DIST)
-	ISCC /DAppVersion=$(APP_VERSION) /DDistDir=$(DIST) $(ISS_SCRIPT)
+installer:
+	@echo "[installer] Gerando instalador Windows via publish.ps1 / Inno Setup..."
+	pwsh -File publish.ps1
 
 # ─── ALL ──────────────────────────────────────────────────────────────────────
-all: restore build-release test publish installer
+all: restore build-release test publish
 	@echo ""
-	@echo "  ✓ Pipeline completo concluído."
-	@echo "  Instalador gerado em: $(DIST)/"
+	@echo "  ✓ Pipeline completo concluído com sucesso."
+	@echo "  Binários gerados em: $(DIST)/"
 	@echo ""
