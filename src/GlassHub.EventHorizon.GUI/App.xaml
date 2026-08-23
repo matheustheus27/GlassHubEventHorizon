@@ -3,19 +3,202 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <!-- GlassHub Glassmorphic Dark Theme Palette -->
-        <Color x:Key="BackgroundDarkColor">#0D0F1A</Color>
-        <Color x:Key="CardGlassBackground">#1A1D2F80</Color>
-        <Color x:Key="NeonCyan">#00F2FE</Color>
-        <Color x:Key="NeonMagenta">#4FACFE</Color>
-        <Color x:Key="GlassBorderColor">#33FFFFFF</Color>
+        <!-- Dynamic Theme Color Definitions (Overridden live by ThemeManager) -->
+        <Color x:Key="BackgroundDarkColor">#FF0D1117</Color>
+        <Color x:Key="CardGlassBackground">#FF161B22</Color>
+        <Color x:Key="PopupBackgroundColor">#FF21262D</Color>
+        <Color x:Key="GlassBorderColor">#FF30363D</Color>
+        <Color x:Key="TextPrimaryColor">#FFF0F6FC</Color>
+        <Color x:Key="TextSecondaryColor">#FF8B949E</Color>
+        <Color x:Key="NeonCyanColor">#FF58A6FF</Color>
+        <Color x:Key="NeonMagentaColor">#FF7EE787</Color>
+        <Color x:Key="DropZoneBackgroundColor">#FF090D13</Color>
+        <Color x:Key="ControlBackgroundColor">#FF21262D</Color>
 
-        <SolidColorBrush x:Key="BackgroundDarkBrush" Color="{StaticResource BackgroundDarkColor}"/>
-        <SolidColorBrush x:Key="CardGlassBrush" Color="#1E2235"/>
-        <SolidColorBrush x:Key="NeonCyanBrush" Color="{StaticResource NeonCyan}"/>
-        <SolidColorBrush x:Key="NeonMagentaBrush" Color="{StaticResource NeonMagenta}"/>
-        <SolidColorBrush x:Key="GlassBorderBrush" Color="{StaticResource GlassBorderColor}"/>
-        <SolidColorBrush x:Key="TextPrimaryBrush" Color="#F0F4F8"/>
-        <SolidColorBrush x:Key="TextSecondaryBrush" Color="#A0AEC0"/>
+        <!-- Dynamic SolidColorBrushes -->
+        <SolidColorBrush x:Key="BackgroundDarkBrush" Color="#FF0D1117"/>
+        <SolidColorBrush x:Key="CardGlassBrush">#FF161B22</SolidColorBrush>
+        <SolidColorBrush x:Key="PopupBackgroundBrush" Color="#FF21262D"/>
+        <SolidColorBrush x:Key="GlassBorderBrush" Color="#FF30363D"/>
+        <SolidColorBrush x:Key="TextPrimaryBrush" Color="#FFF0F6FC"/>
+        <SolidColorBrush x:Key="TextSecondaryBrush" Color="#FF8B949E"/>
+        <SolidColorBrush x:Key="NeonCyanBrush" Color="#FF58A6FF"/>
+        <SolidColorBrush x:Key="NeonMagentaBrush" Color="#FF7EE787"/>
+        <SolidColorBrush x:Key="DropZoneBackgroundBrush" Color="#FF090D13"/>
+        <SolidColorBrush x:Key="ControlBackgroundBrush" Color="#FF21262D"/>
+
+        <!-- Modern GlassHub Vector Path Geometries -->
+        <Geometry x:Key="IconGlassHubLogo">M 12 2 L 22 8 L 22 16 L 12 22 L 2 16 L 2 8 Z M 12 6 L 17 9.5 L 17 14.5 L 12 18 L 7 14.5 L 7 9.5 Z</Geometry>
+        <Geometry x:Key="IconMinimize">M 4 12 L 20 12</Geometry>
+        <Geometry x:Key="IconMaximize">M 4 4 H 20 V 20 H 4 Z</Geometry>
+        <Geometry x:Key="IconClose">M 5 5 L 19 19 M 19 5 L 5 19</Geometry>
+        <Geometry x:Key="IconGear">M 12,15.5 A 3.5,3.5 0 1,0 12,8.5 A 3.5,3.5 0 1,0 12,15.5 Z M 19.43,12.97 C 19.47,12.65 19.5,12.33 19.5,12 C 19.5,11.67 19.47,11.34 19.43,11.03 L 21.54,9.37 C 21.73,9.22 21.78,8.95 21.66,8.73 L 19.66,5.27 C 19.54,5.05 19.27,4.96 19.05,5.05 L 16.56,6.05 C 16.04,5.66 15.5,5.32 14.87,5.07 L 14.49,2.42 C 14.46,2.18 14.25,2 14,2 L 10,2 C 9.75,2 9.54,2.18 9.51,2.42 L 9.13,5.07 C 8.5,5.32 7.96,5.66 7.44,6.05 L 4.95,5.05 C 4.73,4.96 4.46,5.05 4.34,5.27 L 2.34,8.73 C 2.21,8.95 2.27,9.22 2.46,9.37 L 4.57,11.03 C 4.53,11.34 4.5,11.67 4.5,12 C 4.5,12.33 4.53,12.65 4.57,12.97 L 2.46,14.63 C 2.27,14.78 2.21,15.05 2.34,15.27 L 4.34,18.73 C 4.46,18.95 4.73,19.03 4.95,18.95 L 7.44,17.95 C 7.96,18.34 8.5,18.68 9.13,18.93 L 9.51,21.58 C 9.54,21.82 9.75,22 10,22 L 14,22 C 14.25,22 14.46,21.82 14.49,21.58 L 14.87,18.93 C 15.5,18.68 16.04,18.34 16.56,17.95 L 19.05,18.95 C 19.27,19.03 19.54,18.95 19.66,18.73 L 21.66,15.27 C 21.78,15.05 21.73,14.78 21.54,14.63 L 19.43,12.97 Z</Geometry>
+        <Geometry x:Key="IconCompress">M 20 6 H 12 L 10 4 H 4 C 2.9 4 2 4.9 2 6 V 18 C 2 19.1 2.9 20 4 20 H 20 C 21.1 20 22 19.1 22 18 V 8 C 22 6.9 21.1 6 20 6 Z M 12 17 L 8 13 H 11 V 9 H 13 V 13 H 16 L 12 17 Z</Geometry>
+        <Geometry x:Key="IconExtract">M 20 6 H 12 L 10 4 H 4 C 2.9 4 2 4.9 2 6 V 18 C 2 19.1 2.9 20 4 20 H 20 C 21.1 20 22 19.1 22 18 V 8 C 22 6.9 21.1 6 20 6 Z M 12 9 L 16 13 H 13 V 17 H 11 V 13 H 8 L 12 9 Z</Geometry>
+        <Geometry x:Key="IconChart">M 3 3 V 21 H 21 M 7 14 L 11 10 L 15 14 L 19 8</Geometry>
+        <Geometry x:Key="IconFolder">M 10 4 H 4 C 2.9 4 2 4.9 2 6 V 18 C 2 19.1 2.9 20 4 20 H 20 C 21.1 20 22 19.1 22 18 V 8 C 22 6.9 21.1 6 20 6 H 12 L 10 4 Z</Geometry>
+        <Geometry x:Key="IconTrash">M 6 19 C 6 20.1 6.9 21 8 21 H 16 C 17.1 21 18 20.1 18 19 V 7 H 6 V 19 Z M 19 4 H 15.5 L 14.5 3 H 9.5 L 8.5 4 H 5 V 6 H 19 V 4 Z</Geometry>
+
+        <!-- Windows 11 Fluent TabControl Style -->
+        <Style TargetType="TabControl">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+        </Style>
+
+        <Style TargetType="TabItem">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextSecondaryBrush}"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Padding" Value="14,8"/>
+            <Setter Property="Margin" Value="0,0,6,0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabItem">
+                        <Border x:Name="TabBorder" Background="{TemplateBinding Background}" CornerRadius="8,8,0,0" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter x:Name="ContentSite" VerticalAlignment="Center" HorizontalAlignment="Center" ContentSource="Header"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="TabBorder" Property="Background" Value="{DynamicResource ControlBackgroundBrush}"/>
+                                <Setter Property="Foreground" Value="{DynamicResource TextPrimaryBrush}"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="TabBorder" Property="Background" Value="{DynamicResource CardGlassBrush}"/>
+                                <Setter TargetName="TabBorder" Property="BorderBrush" Value="{DynamicResource NeonCyanBrush}"/>
+                                <Setter TargetName="TabBorder" Property="BorderThickness" Value="0,0,0,2"/>
+                                <Setter Property="Foreground" Value="{DynamicResource NeonCyanBrush}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Modern Rounded Button Style -->
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextPrimaryBrush}"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource GlassBorderBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="12,6"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="btnBorder" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="6" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="btnBorder" Property="BorderBrush" Value="{DynamicResource NeonCyanBrush}"/>
+                                <Setter TargetName="btnBorder" Property="Opacity" Value="0.9"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="btnBorder" Property="Opacity" Value="0.7"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="btnBorder" Property="Opacity" Value="0.4"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Fluent Modern TextBox Style -->
+        <Style TargetType="TextBox">
+            <Setter Property="Background" Value="{DynamicResource BackgroundDarkBrush}"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextPrimaryBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource GlassBorderBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="8,6"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border x:Name="txtBorder" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="6">
+                            <ScrollViewer x:Name="PART_ContentHost" Margin="{TemplateBinding Padding}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter TargetName="txtBorder" Property="BorderBrush" Value="{DynamicResource NeonCyanBrush}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Fluent Modern PasswordBox Style -->
+        <Style TargetType="PasswordBox">
+            <Setter Property="Background" Value="{DynamicResource BackgroundDarkBrush}"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextPrimaryBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource GlassBorderBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="8,6"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="PasswordBox">
+                        <Border x:Name="pwdBorder" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="6">
+                            <ScrollViewer x:Name="PART_ContentHost" Margin="{TemplateBinding Padding}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter TargetName="pwdBorder" Property="BorderBrush" Value="{DynamicResource NeonCyanBrush}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Fluent Modern ComboBox & Dropdown Popup Styles (Fixed Legibility) -->
+        <Style TargetType="ComboBox">
+            <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextPrimaryBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource GlassBorderBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="8,6"/>
+            <Setter Property="FontSize" Value="12"/>
+        </Style>
+
+        <Style TargetType="ComboBoxItem">
+            <Setter Property="Background" Value="{DynamicResource PopupBackgroundBrush}"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextPrimaryBrush}"/>
+            <Setter Property="Padding" Value="10,6"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBoxItem">
+                        <Border x:Name="itemBorder" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" CornerRadius="4">
+                            <ContentPresenter/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="itemBorder" Property="Background" Value="{DynamicResource NeonCyanBrush}"/>
+                                <Setter Property="Foreground" Value="Black"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="itemBorder" Property="Background" Value="{DynamicResource NeonCyanBrush}"/>
+                                <Setter Property="Foreground" Value="Black"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Expander Advanced Options Style -->
+        <Style TargetType="Expander">
+            <Setter Property="Foreground" Value="{DynamicResource TextSecondaryBrush}"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Margin" Value="0,10,0,10"/>
+        </Style>
     </Application.Resources>
 </Application>
+

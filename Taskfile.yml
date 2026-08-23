@@ -1,0 +1,131 @@
+# Taskfile.yml - GlassHub Event Horizon
+# Docs: https://taskfile.dev
+version: "3"
+
+vars:
+  SOLUTION:    GlassHubEventHorizon.slnx
+  GUI_PROJ:    src/GlassHub.EventHorizon.GUI/GlassHub.EventHorizon.GUI.csproj
+  CLI_PROJ:    src/GlassHub.EventHorizon.CLI/GlassHub.EventHorizon.CLI.csproj
+  CONFIG:      Release
+  DIST:        dist
+  APP_NAME:    GlassHub.EventHorizon
+  APP_VERSION: 1.0.0
+
+tasks:
+
+  default:
+    desc: Lista todas as tarefas disponiveis
+    cmds:
+      - task --list
+
+  # --- RESTORE ---
+  restore:
+    desc: Restaurar dependencias NuGet
+    cmds:
+      - dotnet restore {{.SOLUTION}}
+
+  # --- BUILD ---
+  build:
+    desc: Build Debug da solucao
+    deps: [restore]
+    cmds:
+      - dotnet build {{.SOLUTION}} --no-restore -c Debug
+
+  build:release:
+    desc: Build Release da solucao
+    deps: [restore]
+    cmds:
+      - dotnet build {{.SOLUTION}} --no-restore -c {{.CONFIG}}
+
+  # --- TEST ---
+  test:
+    desc: Executar todos os testes
+    deps: [restore]
+    cmds:
+      - dotnet test {{.SOLUTION}} --no-restore -c {{.CONFIG}} --logger "console;verbosity=normal"
+
+  # --- LINT / FORMAT ---
+  lint:
+    desc: Verificar formatacao (dotnet format --verify)
+    cmds:
+      - dotnet format {{.SOLUTION}} --verify-no-changes --severity warn
+
+  format:
+    desc: Aplicar formatacao automatica
+    cmds:
+      - dotnet format {{.SOLUTION}} --severity warn
+
+  # --- CLEAN ---
+  clean:
+    desc: Limpar bin/ obj/ dist/
+    cmds:
+      - dotnet clean {{.SOLUTION}}
+      - cmd /c "if exist {{.DIST}} rmdir /s /q {{.DIST}}"
+
+  # --- RUN ---
+  run:gui:
+    desc: Rodar a GUI em modo Debug
+    cmds:
+      - dotnet run --project {{.GUI_PROJ}} -c Debug
+
+  run:cli:
+    desc: Rodar a CLI (use ARG="..." para argumentos)
+    cmds:
+      - dotnet run --project {{.CLI_PROJ}} -c Debug -- {{.ARG}}
+
+  # --- PUBLISH ---
+  publish:gui:
+    desc: Publicar GUI self-contained win-x64
+    deps: [build:release]
+    cmds:
+      - >-
+        dotnet publish {{.GUI_PROJ}}
+        -c {{.CONFIG}}
+        -r win-x64
+        --self-contained true
+        -p:PublishSingleFile=true
+        -p:IncludeNativeLibrariesForSelfExtract=true
+        -p:PublishReadyToRun=true
+        -p:AssemblyName={{.APP_NAME}}.GUI
+        -o {{.DIST}}/gui
+
+  publish:cli:
+    desc: Publicar CLI self-contained win-x64
+    deps: [build:release]
+    cmds:
+      - >-
+        dotnet publish {{.CLI_PROJ}}
+        -c {{.CONFIG}}
+        -r win-x64
+        --self-contained true
+        -p:PublishSingleFile=true
+        -p:IncludeNativeLibrariesForSelfExtract=true
+        -p:AssemblyName=evh
+        -o {{.DIST}}/cli
+
+  publish:all:
+    desc: Publicar GUI + CLI
+    deps: [publish:gui, publish:cli]
+    cmds:
+      - echo "Publicacao concluida em {{.DIST}}/"
+
+  # --- INSTALLER (Inno Setup) ---
+  installer:
+    desc: Gerar instalador Windows via Inno Setup (requer ISCC no PATH)
+    deps: [publish:all]
+    preconditions:
+      - sh: where ISCC
+        msg: "Inno Setup nao encontrado. Instale em https://jrsoftware.org/isinfo.php e adicione ao PATH."
+    cmds:
+      - cmd /c "if not exist {{.DIST}} mkdir {{.DIST}}"
+      - ISCC /DAppVersion={{.APP_VERSION}} /DDistDir={{.DIST}} installer/setup.iss
+
+  # --- PIPELINE COMPLETO ---
+  all:
+    desc: "Pipeline: restore -> build -> test -> publish -> installer"
+    cmds:
+      - task: restore
+      - task: build:release
+      - task: test
+      - task: publish:all
+      - task: installer
