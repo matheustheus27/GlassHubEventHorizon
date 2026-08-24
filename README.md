@@ -4,7 +4,7 @@
     <img src="https://glasshub-quasar.vercel.app/api/logo?project=eventhorizon&animated=true&width=180&height=180" alt="GlassHub Event Horizon Animated Logo" width="180" height="180" />
   </a>
 
-  # GlassHub Event Horizon
+  # 🕳️ GlassHub Event Horizon
 
   <p><strong>High-Performance Stream-Based File Compression, Extraction, and Telemetry Desktop Application &amp; CLI for the GlassHub Ecosystem.</strong></p>
 
