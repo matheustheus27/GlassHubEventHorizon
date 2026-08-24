@@ -1,6 +1,6 @@
 # 🚀 Compilation and Execution Guide - GlassHubEventHorizon
 
-![Execution Card](https://glass-hub-engine.vercel.app/api/card?title=Execution+Guide+%26+CLI+Manual&description=Compilation+instructions+and+simplified+syntax+for+the+evh+CLI.&tag=EXECUTION&icon=sparkles&width=650&theme=glass-dark)
+![Execution Card](https://glasshub-quasar.vercel.app/api/card?title=Execution+Guide+%26+CLI+Manual&description=Compilation+instructions+and+simplified+syntax+for+the+evh+CLI.&tag=EXECUTION&icon=sparkles&width=650&theme=glass-dark)
 
 This guide provides step-by-step instructions to restore, build, test, and execute **GlassHubEventHorizon** via the Command Line Interface (`evh`) and Desktop GUI.
 

@@ -1,8 +1,8 @@
 # 🌌 GlassHubEventHorizon - Official Documentation
 
 <div align="center">
-  <a href="https://glass-hub-engine.vercel.app/api/logo?project=eventhorizon&animated=true">
-    <img src="https://glass-hub-engine.vercel.app/api/logo?project=eventhorizon&animated=true&width=160&height=160" alt="GlassHub Event Horizon Animated Logo" width="160" height="160" />
+  <a href="https://github.com/matheustheus27/GlassHubQuasar">
+    <img src="https://glasshub-quasar.vercel.app/api/logo?project=eventhorizon&animated=true&width=160&height=160" alt="GlassHub Event Horizon Animated Logo" width="160" height="160" />
   </a>
 </div>
 
@@ -14,7 +14,7 @@ This documentation is written in **clear, simple, didactic, and accessible** lan
 
 ## 📚 Documentation Index
 
-![Doc Index Table](https://glass-hub-engine.vercel.app/api/table?title=Available+Documentation&columns=Document,Description,File&rows=Architecture,Clean+Architecture+%26+Dual+Engine,docs%2Farchitecture.md;Components,Atomic+Design+Architecture,docs%2Fcomponents.md;Execution,Build+Guide+%26+evh+CLI+Manual,docs%2Fexecution.md;i18n+%26+Design,Localization+%26+Glassmorphic+Theme,docs%2Fi18n-and-design.md&width=820&col_widths=22,50,28&theme=glass-dark)
+![Doc Index Table](https://glasshub-quasar.vercel.app/api/table?title=Available+Documentation&columns=Document,Description,File&rows=Architecture,Clean+Architecture+%26+Dual+Engine,docs%2Farchitecture.md;Components,Atomic+Design+Architecture,docs%2Fcomponents.md;Execution,Build+Guide+%26+evh+CLI+Manual,docs%2Fexecution.md;i18n+%26+Design,Localization+%26+Glassmorphic+Theme,docs%2Fi18n-and-design.md&width=820&col_widths=22,50,28&theme=glass-dark)
 
 1. [📐 **System Architecture (`architecture.md`)**](architecture.md)
    - Clean Architecture and SOLID principles overview.

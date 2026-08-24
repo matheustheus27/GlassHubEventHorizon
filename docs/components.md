@@ -1,6 +1,6 @@
 # 🧩 Atomic Components - GlassHubEventHorizon
 
-![Atomic Design Card](https://glass-hub-engine.vercel.app/api/card?title=Atomic+Design+Architecture&description=Atoms%2C+Molecules%2C+Organisms%2C+and+Templates+structuring+decoupled+pure+UI.&tag=ATOMIC+DESIGN&icon=sparkles&width=650&theme=glass-dark)
+![Atomic Design Card](https://glasshub-quasar.vercel.app/api/card?title=Atomic+Design+Architecture&description=Atoms%2C+Molecules%2C+Organisms%2C+and+Templates+structuring+decoupled+pure+UI.&tag=ATOMIC+DESIGN&icon=sparkles&width=650&theme=glass-dark)
 
 Faithful to the **GlassHub Ecosystem** guidelines, **GlassHubEventHorizon** structures its entire user interface and presentation layer using the **Atomic Design Methodology**.
 

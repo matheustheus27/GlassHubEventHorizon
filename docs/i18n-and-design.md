@@ -1,6 +1,6 @@
 # 🌐 Internationalization (i18n) & Design System - GlassHub
 
-![Design System Card](https://glass-hub-engine.vercel.app/api/card?title=i18n+%26+Glassmorphism+Design&description=Dynamic+localization+system+and+GlassHub+cosmic+design+tokens.&tag=DESIGN+SYSTEM&icon=sparkles&width=650&theme=glass-dark)
+![Design System Card](https://glasshub-quasar.vercel.app/api/card?title=i18n+%26+Glassmorphism+Design&description=Dynamic+localization+system+and+GlassHub+cosmic+design+tokens.&tag=DESIGN+SYSTEM&icon=sparkles&width=650&theme=glass-dark)
 
 This document outlines the internationalization architecture and visual design system guidelines of **GlassHubEventHorizon**, aligned with the **GlassHub Ecosystem**.
 

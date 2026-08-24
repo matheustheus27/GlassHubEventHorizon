@@ -1,6 +1,6 @@
 # 📐 System Architecture - GlassHubEventHorizon
 
-![Architecture Card](https://glass-hub-engine.vercel.app/api/card?title=Clean+Architecture+%26+SOLID&description=Decoupled+layers%2C+dual-engine+fallback%2C+and+high-precision+telemetry.&tag=ARCHITECTURE&icon=gear&width=650&theme=glass-dark)
+![Architecture Card](https://glasshub-quasar.vercel.app/api/card?title=Clean+Architecture+%26+SOLID&description=Decoupled+layers%2C+dual-engine+fallback%2C+and+high-precision+telemetry.&tag=ARCHITECTURE&icon=gear&width=650&theme=glass-dark)
 
 **GlassHubEventHorizon** is engineered strictly following **Clean Architecture**, **Domain-Driven Design (DDD)**, and **SOLID** principles. The core goal is ensuring that file compression business logic remains completely decoupled from presentation layers (CLI and GUI).
 
@@ -21,7 +21,7 @@ GlassHubEventHorizon/
 
 ## 🎯 Applied SOLID Principles
 
-![SOLID Card](https://glass-hub-engine.vercel.app/api/card?title=SOLID+Engineering+Pillars&description=Single+Responsibility%2C+Open%2FClosed%2C+Liskov+Substitution%2C+Interface+Segregation%2C+Dependency+Inversion.&tag=SOLID&icon=sparkles&width=650&theme=glass-dark)
+![SOLID Card](https://glasshub-quasar.vercel.app/api/card?title=SOLID+Engineering+Pillars&description=Single+Responsibility%2C+Open%2FClosed%2C+Liskov+Substitution%2C+Interface+Segregation%2C+Dependency+Inversion.&tag=SOLID&icon=sparkles&width=650&theme=glass-dark)
 
 1. **S - Single Responsibility Principle (SRP):**
    - Each class fulfills a single role. For example, `NativeZipEngine` strictly handles native ZIP operations, while `LocalizationService` manages translations.

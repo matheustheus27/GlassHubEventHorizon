@@ -1,7 +1,7 @@
 <div align="center">
 
-  <a href="https://glass-hub-engine.vercel.app/api/logo?project=eventhorizon&animated=true">
-    <img src="https://glass-hub-engine.vercel.app/api/logo?project=eventhorizon&animated=true&width=180&height=180" alt="GlassHub Event Horizon Animated Logo" width="180" height="180" />
+  <a href="https://github.com/matheustheus27/GlassHubQuasar">
+    <img src="https://glasshub-quasar.vercel.app/api/logo?project=eventhorizon&animated=true&width=180&height=180" alt="GlassHub Event Horizon Animated Logo" width="180" height="180" />
   </a>
 
   # GlassHub Event Horizon
@@ -9,20 +9,20 @@
   <p><strong>High-Performance Stream-Based File Compression, Extraction, and Telemetry Desktop Application &amp; CLI for the GlassHub Ecosystem.</strong></p>
 
   <p>
-    <a href="https://glass-hub-engine.vercel.app/api/badge?label=GlassHub&value=Ecosystem&icon=glasshub&theme=glass-dark&glow=true">
-      <img src="https://glass-hub-engine.vercel.app/api/badge?label=GlassHub&value=Ecosystem&icon=glasshub&theme=glass-dark&glow=true" alt="GlassHub Ecosystem" />
+    <a href="https://github.com/matheustheus27/GlassHubQuasar">
+      <img src="https://glasshub-quasar.vercel.app/api/badge?label=GlassHub&value=Ecosystem&icon=glasshub&theme=glass-dark&glow=true" alt="GlassHub Ecosystem" />
     </a>
-    <a href="https://glass-hub-engine.vercel.app/api/badge?label=.NET&value=v8.0&icon=csharp&theme=glass-dark&glow=true">
-      <img src="https://glass-hub-engine.vercel.app/api/badge?label=.NET&value=v8.0&icon=csharp&theme=glass-dark&glow=true" alt=".NET 8.0" />
+    <a href="https://dotnet.microsoft.com/">
+      <img src="https://glasshub-quasar.vercel.app/api/badge?label=.NET&value=v8.0&icon=csharp&theme=glass-dark&glow=true" alt=".NET 8.0" />
     </a>
-    <a href="https://glass-hub-engine.vercel.app/api/badge?label=GUI&value=Windows11--WPF&icon=windows&theme=glass-dark&glow=true">
-      <img src="https://glass-hub-engine.vercel.app/api/badge?label=GUI&value=Windows11--WPF&icon=windows&theme=glass-dark&glow=true" alt="Windows 11 WPF" />
+    <a href="https://github.com/matheustheus27/GlassHubEventHorizon">
+      <img src="https://glasshub-quasar.vercel.app/api/badge?label=GUI&value=Windows11--WPF&icon=windows&theme=glass-dark&glow=true" alt="Windows 11 WPF" />
     </a>
-    <a href="https://glass-hub-engine.vercel.app/api/badge?label=CLI&value=evh&icon=vscode&theme=glass-dark&glow=true">
-      <img src="https://glass-hub-engine.vercel.app/api/badge?label=CLI&value=evh&icon=vscode&theme=glass-dark&glow=true" alt="evh CLI" />
+    <a href="https://github.com/matheustheus27/GlassHubEventHorizon">
+      <img src="https://glasshub-quasar.vercel.app/api/badge?label=CLI&value=evh&icon=vscode&theme=glass-dark&glow=true" alt="evh CLI" />
     </a>
-    <a href="https://glass-hub-engine.vercel.app/api/badge?label=Engine&value=Dual--Fallback&icon=gear&theme=glass-dark&glow=true">
-      <img src="https://glass-hub-engine.vercel.app/api/badge?label=Engine&value=Dual--Fallback&icon=gear&theme=glass-dark&glow=true" alt="Dual Fallback Engine" />
+    <a href="https://github.com/matheustheus27/GlassHubQuasar">
+      <img src="https://glasshub-quasar.vercel.app/api/badge?label=Powered%20By&value=GlassHub%20Quasar&icon=glasshubquasar&theme=glass-dark&glow=true" alt="Powered By GlassHub Quasar" />
     </a>
   </p>
 
@@ -32,7 +32,7 @@
 
 ## 🌐 Project Overview
 
-![Overview Card](https://glass-hub-engine.vercel.app/api/card?title=GlassHub+Event+Horizon&description=High-Performance+Stream-Based+Compression+%26+Telemetry+Engine+with+Cosmic+Glassmorphism.&tag=Cosmic+Arch&icon=sparkles&width=650&theme=glass-dark)
+![Overview Card](https://glasshub-quasar.vercel.app/api/card?title=GlassHub+Event+Horizon&description=High-Performance+Stream-Based+Compression+%26+Telemetry+Engine+with+Cosmic+Glassmorphism.&tag=Cosmic+Arch&icon=sparkles&width=650&theme=glass-dark)
 
 **GlassHubEventHorizon** is a high-performance stream-based desktop application and CLI tool for specialized file compression, extraction, and telemetry inspection. Built with **WPF & .NET 8**, it adopts a native **Windows 11 Cosmic Dark Glassmorphism** visual identity, decoupled **MVVM architecture**, dual-engine fallback (*Native .NET* + *7-Zip CLI*), and dynamic dual-language localization (`pt-BR` / `en-US`).
 
@@ -40,7 +40,7 @@
 
 ## ⚡ Core Engineering Features
 
-![Features Card](https://glass-hub-engine.vercel.app/api/card?title=Core+Engineering+Pillars&description=Dual-Engine+Fallback+%7C+Windows+11+NavigationView+%7C+1-Click+Presets+%7C+AES-256+Encryption+%7C+Inno+Setup&tag=FEATURES&icon=gear&width=650&theme=glass-dark)
+![Features Card](https://glasshub-quasar.vercel.app/api/card?title=Core+Engineering+Pillars&description=Dual-Engine+Fallback+%7C+Windows+11+NavigationView+%7C+1-Click+Presets+%7C+AES-256+Encryption+%7C+Inno+Setup&tag=FEATURES&icon=gear&width=650&theme=glass-dark)
 
 - 🌌 **Windows 11 Cosmic Dark (Glassmorphism):** Deep space backdrop (`#070B13`), glass cards (`#0E1626`), and neon cyan accents (`#00E5FF`) with customizable live themes (*Cosmic Dark*, *Fluent Light*, *WinRAR Cyber*, *Neon Cyberpunk*, *Glass Dark*).
 - 🧭 **Modular NavigationView:** Clean lateral navigation split into **Compactar (Compress)**, **Extrair (Extract)**, **Inspetor (Inspect)**, and **Configurações (Settings)**.
@@ -129,8 +129,17 @@ Generates the official installer `setup_output/GlassHubEventHorizon_Setup_v1.0.0
 
 ---
 
+## 🌌 GlassHub Ecosystem & Visual Components
+
+All dynamic visual badges, telemetry SVG cards, and animated branding in this repository are generated and powered by **[GlassHub Quasar](https://github.com/matheustheus27/GlassHubQuasar)** (formerly *GlassHubEngine*), the official Glassmorphic cosmic widget and SVG rendering engine of the GlassHub ecosystem.
+
+- 🔮 **[GlassHub Quasar Repository](https://github.com/matheustheus27/GlassHubQuasar):** Dynamic Glassmorphic SVG Widgets, Cards & Badges for GitHub & Web.
+
+---
+
 ## ⚖️ Software License
 
 This project is licensed under a proprietary source-available non-commercial license. See the [LICENSE](LICENSE) file for complete legal terms.
 
 Copyright (c) 2026 Matheus Ferreira. All rights reserved.
+
