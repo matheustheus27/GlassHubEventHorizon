@@ -16,10 +16,10 @@
       <img src="https://glasshub-quasar.vercel.app/api/badge?label=.NET&value=v8.0&icon=csharp&theme=glass-dark&glow=true" alt=".NET 8.0" />
     </a>
     <a href="https://github.com/matheustheus27/GlassHubEventHorizon">
-      <img src="https://glasshub-quasar.vercel.app/api/badge?label=GUI&value=Windows11--WPF&icon=windows&theme=glass-dark&glow=true" alt="Windows 11 WPF" />
+      <img src="https://glasshub-quasar.vercel.app/api/badge?label=GUI&value=Windows%2011%20-%20WPF&icon=gui&theme=glass-dark&glow=true" alt="Windows 11 WPF" />
     </a>
     <a href="https://github.com/matheustheus27/GlassHubEventHorizon">
-      <img src="https://glasshub-quasar.vercel.app/api/badge?label=CLI&value=evh&icon=vscode&theme=glass-dark&glow=true" alt="evh CLI" />
+      <img src="https://glasshub-quasar.vercel.app/api/badge?label=CLI&value=evh&icon=cli&theme=glass-dark&glow=true" alt="evh CLI" />
     </a>
     <a href="https://github.com/matheustheus27/GlassHubQuasar">
       <img src="https://glasshub-quasar.vercel.app/api/badge?label=Powered%20By&value=GlassHub%20Quasar&icon=glasshubquasar&theme=glass-dark&glow=true" alt="Powered By GlassHub Quasar" />
